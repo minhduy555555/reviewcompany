@@ -1,9 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
-const app = express()
 const path = require('path')
 const { engine } = require('express-handlebars')
-const route = require("./router")
+const route = require("./routes")
+const app = express()
 const port = 3001
 
 // app.use(morgan('combined'))

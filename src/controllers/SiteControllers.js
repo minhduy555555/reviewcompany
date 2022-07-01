@@ -1,8 +1,9 @@
 
-class SiteControllers{
+class SiteControllers {
+    // [GET] /
     home(req, res, next) {
-        res.send("đây là test")
+        res.render("home")
     }
 }
 
-module.exports = new SiteControllers
+module.exports = new SiteControllers();
