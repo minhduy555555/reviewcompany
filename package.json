@@ -1,0 +1,31 @@
+{
+  "name": "review-congty",
+  "version": "1.0.0",
+  "description": "review công ty nhóm 5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuuManhCuong/ReviewCongTy.git"
+  },
+  "keywords": [
+    "review",
+    "cong",
+    "ty",
+    "nhóm",
+    "5"
+  ],
+  "author": "Mạnh Cường, Minh Duy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuuManhCuong/ReviewCongTy/issues"
+  },
+  "homepage": "https://github.com/LuuManhCuong/ReviewCongTy#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.18"
+  }
+}
