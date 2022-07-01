@@ -3,7 +3,10 @@ const morgan = require('morgan')
 const app = express()
 const path = require('path')
 const { engine } = require('express-handlebars')
-const port = 3000
+const route = require("./router")
+const port = 3001
+
+// app.use(morgan('combined'))
 
 app.use(express.static(path.join(__dirname,'public')))
 // cấu hình hbs
@@ -17,10 +20,8 @@ app.engine('hbs', engine({
 app.set("view engine", "hbs")
 app.set('views', path.join(__dirname, 'resource','views'));
 
-app.get('/', (req, res) => {
-  res.render("home")
-})
+route(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`app đang chạy trên cổng ${port}`)
 })

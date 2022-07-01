@@ -120,4 +120,74 @@ a {
       }
     }
   }
+
+
+  .account{
+    ul{
+      display: flex;
+      align-items:center;
+      justify-content: flex-end;
+
+      .notifi{
+        margin:0px 8px;
+        position: relative;
+        cursor: pointer;
+        i{
+          font-size: 1.8rem;
+          color: $white-color;
+          padding: 4px 8px;
+        }
+
+        span{
+          position: absolute;
+          top: -6px;
+          right: 40%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $white-color;
+          background-color: $second-color;
+          border-radius: 30px;
+          font-size: 1.1rem;
+          font-weight: 400;
+          padding: 0px 5px;
+        }
+      }
+    }
+    
+    .account-item{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avarta{
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      overflow: hidden;
+    }
+
+    .user-name{
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: white;
+      padding: 2px 4px;
+      text-transform: capitalize;
+    }
+
+    .loginBtn{
+      border-radius: 5px;
+      margin: 0 8px;
+      padding: 4px 8px;
+      font-size: 1.6rem;
+      color: $second-color;
+      background-color: transparent;
+      border: 1px solid $white-color;
+
+      &:hover{
+        background-color: $second-color;
+        color: $white-color;
+      }
+    }
+  }
 }

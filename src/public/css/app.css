@@ -94,3 +94,54 @@ a {
         background-color: #c89979; }
         .header .search .search-wrap button:hover {
           background-color: #ae8366; }
+  .header .account ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    .header .account ul .notifi {
+      margin: 0px 8px;
+      position: relative;
+      cursor: pointer; }
+      .header .account ul .notifi i {
+        font-size: 1.8rem;
+        color: #fff;
+        padding: 4px 8px; }
+      .header .account ul .notifi span {
+        position: absolute;
+        top: -6px;
+        right: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background-color: #c89979;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 400;
+        padding: 0px 5px; }
+  .header .account .account-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .header .account .avarta {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden; }
+  .header .account .user-name {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: white;
+    padding: 2px 4px;
+    text-transform: capitalize; }
+  .header .account .loginBtn {
+    border-radius: 5px;
+    margin: 0 8px;
+    padding: 4px 8px;
+    font-size: 1.6rem;
+    color: #c89979;
+    background-color: transparent;
+    border: 1px solid #fff; }
+    .header .account .loginBtn:hover {
+      background-color: #c89979;
+      color: #fff; }
