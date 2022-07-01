@@ -4,6 +4,8 @@
   "description": "review công ty nhóm 5",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --inspect ./src/index.js",
+    "watch": "node-sass --watch src/resource/scss/app.scss src/public/css/app.css", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +27,9 @@
   "homepage": "https://github.com/LuuManhCuong/ReviewCongTy#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
     "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.18"
   }
 }

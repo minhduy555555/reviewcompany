@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  scroll-behavior: smooth; }
+
+::-webkit-scrollbar {
+  width: 12px; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: linear-gradient(red, var(--primary-color)); }
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: black; }
+
+.header {
+  width: 100%;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  .header .header-infor {
+    height: 30px;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf; }
+    .header .header-infor ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .header .header-infor ul li {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #fff;
+        padding: 2px 8px; }
+      .header .header-infor ul .icon {
+        font-size: 1.6rem;
+        padding: 2px 4px;
+        color: #fff; }
+  .header .search {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90px;
+    padding: 0 30px; }
+    .header .search .logo-img {
+      width: 100px;
+      height: 100%;
+      z-index: 100; }
+    .header .search .search-wrap {
+      height: 40px;
+      border-radius: 5px;
+      padding: 0;
+      background-color: #fff;
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center; }
+      .header .search .search-wrap .search-input {
+        width: 90%;
+        height: 80%;
+        font-size: 1.8rem;
+        padding: 0 12px;
+        border: none;
+        font-weight: 500;
+        font-family: "Roboto", sans-serif;
+        outline: none;
+        background-color: transparent; }
+      .header .search .search-wrap button {
+        width: 60px;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 2rem;
+        color: #fff;
+        background-color: #c89979; }
+        .header .search .search-wrap button:hover {
+          background-color: #ae8366; }
