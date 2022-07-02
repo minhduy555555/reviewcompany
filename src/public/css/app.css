@@ -250,3 +250,31 @@ a {
 .home .logo-congty {
   width: 100%;
   border-radius: 10px; }
+
+.home .title {
+  font-size: 2.6rem;
+  color: #333333;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 20px;
+  display: block;
+  text-align: center; }
+
+.home .title-wrap {
+  position: relative; }
+
+.home .view-more {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  border-radius: 5px;
+  margin: 0 8px;
+  padding: 4px 8px;
+  font-size: 1.6rem;
+  color: black;
+  background-color: transparent;
+  border: 1px solid #333333;
+  text-transform: capitalize; }
+  .home .view-more:hover {
+    background-color: #c89979;
+    color: #fff; }
