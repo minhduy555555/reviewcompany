@@ -205,7 +205,7 @@ a {
     padding: 4px 8px;
 
     a,
-    p {
+    .selectBtn {
       text-decoration: none;
       color: $white-color;
       font-size: 1.5rem;
@@ -222,8 +222,25 @@ a {
 
   .selectList {
     position: relative;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease-in;
+
+    .selectBtn.active{
+      border-bottom: 2px solid $second-color;
+      color: $second-color;
+    }
+
+    .selectBtn.active .selectItem{
+      display: flex;
+    }
+
+    .selectBtn:hover .selectItem{
+      display: flex;
+    }
 
     .selectItem {
+      display: none;
       position: absolute;
       top: 132%;
       right: 0;
@@ -231,12 +248,27 @@ a {
       background-color: $white-color;
       box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
       min-width: 150%;
-      display: inline-block;
       height: auto;
-      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
+      li{
+        width: 100%;
+        &:hover{
+          background-color: $second-color;
+          color: $white-color;
+        }
+      }
+
+      &::after{
+        content: "";
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        top: -20%;
+        right: 0;
+      }
 
       li a {
         text-decoration: none;
@@ -244,6 +276,9 @@ a {
         font-size: 1.5rem;
         text-transform: uppercase;
         font-weight: 600;
+        display: block;
+        width: 100%;
+        text-align: center;
       }
     }
   }
@@ -287,5 +322,14 @@ a {
       background-color: $second-color;
       color: $white-color;
     }
+  }
+}
+
+.home{
+  .logo-congty{
+    width: 100%;
+    // height: 50px;
+    border-radius: 10px;
+
   }
 }

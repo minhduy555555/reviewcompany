@@ -1,8 +1,15 @@
+const Company = require("../models/company")
 
 class SiteControllers {
     // [GET] /
     home(req, res, next) {
-        res.render("home")
+        Company.find({}).lean()
+            .then(company => {
+                console.log(company)
+                res.render("home", {
+                    company
+                })
+            })
     }
 }
 

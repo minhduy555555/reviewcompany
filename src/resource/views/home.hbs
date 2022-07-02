@@ -1,11 +1,28 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    xin chào thế giới
-</body>
-</html>
+<div class="home">
+    <h3>Các Công Ty</h3>
+    <div class="row">
+        {{#each company}}
+        <div class="col-lg-3">
+            <a href="">
+                <img class="logo-congty"
+                    src="{{this.logo}}"
+                    alt="logo-congty">
+                <h3>{{this.name}}</h3>
+                <p>{{this.slogan}}</p>
+                <p>lĩnh vực: {{this.field}}</p>
+                <p>{{this.address}}</p>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <span>{{this.like}}</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-comment"></i>
+                        <span>{{this.comments}}</span>
+                    </li>
+                </ul>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
