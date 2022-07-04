@@ -1,6 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
+var cookieParser = require('cookie-parser')
+
+var middlewares = require('./middlewares/authent')
 const { engine } = require('express-handlebars')
 const route = require("./routes")
 const database = require("./config/database")
@@ -13,7 +16,9 @@ const port = 3001
 // Cho phép lý dữ liệu từ form method POST
 app.use(express.urlencoded({extended: true}))
 
+app.use(cookieParser())
 
+app.use('/',middlewares.getUserAndAvt)
 app.use(express.static(path.join(__dirname, 'public')));
 // cấu hình hbs
 app.engine('hbs', engine({

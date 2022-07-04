@@ -1,5 +1,5 @@
 const Company = require("../models/company");
-
+const Account = require('../models/account');
 class SiteControllers {
   // [GET] /
   home(req, res, next) {
@@ -61,10 +61,41 @@ login(req, res, next) {
   res.render('login', {layout: false})
 }
 
+
+// [post] /login
+postLogin(req, res, next) {
+  Account.findOne({email:req.body.email}).lean()
+  .then((user)=>{
+    if(!user){
+      res.render('login',{err:"Tài khoản này không tồn tại", layout: false})
+      return
+    }
+    if(user.password != req.body.password){
+      res.render('login',{err:"Mật Khẩu Không Đúng", layout: false})
+      return
+    }
+    res.cookie('userId ',user._id)
+    res.redirect('/')
+  })
+}
 // [GET] /register
 register(req, res, next) {
   res.render('register', {layout: false})
 }
+// [post] /register
+postRegister(req, res, next){
+    var newAccount = new Account(req.body)
+    newAccount.save()
+    .then(()=>{
+      res.redirect('/login')
+    })
 }
+//[get] /logout
+logout(req, res, next){
+  res.clearCookie('userId')
+  res.redirect('/')
+}
+}
+
 
 module.exports = new SiteControllers();
