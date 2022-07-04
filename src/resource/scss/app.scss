@@ -599,36 +599,51 @@ p {
   background-color: $primary-color;
 }
 
-.form-wraper{
-  .wrap-group{
+.form-wraper {
+  .wrap-group {
     display: flex;
     width: 100%;
   }
-  
-  .wraper-company{
-      width: 50%;
-  }
-  .description{
-      width: 50%;
-      .description{
-        width: 100%;
-        height: auto;
-      }
 
-      .image{
-        width: 100%;
-        height: 200px;
-      }
+  .wraper-company {
+    width: 50%;
+  }
+  .description {
+    width: 50%;
+    .description {
+      width: 100%;
+      height: auto;
+    }
+
+    .image {
+      width: 100%;
+      height: 200px;
+    }
   }
 }
 
-.form-wraper{
-  .mb-3{
+.form-wraper {
+  h3 {
+    font-size: 2.6rem;
+    color: #333333;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 20px;
+    display: block;
+    text-align: center;
+  }
+  .mb-3 {
     display: flex;
 
-    label{
+    label {
       margin-right: 10px;
-      min-width: 100px;
+      min-width: 80px;
     }
+  }
+}
+
+.upload-img {
+  .preview-images > img {
+    width: 10%;
   }
 }

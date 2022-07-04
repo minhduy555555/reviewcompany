@@ -1,5 +1,5 @@
-
 <form class="form-wraper mt-4" method="POST" action="/create/post/company">
+  <h3>Thêm công ty mới</h3>
   <div class="wrap-group">
     <div class="wraper-company">
       <div class="mb-3">
@@ -16,19 +16,47 @@
       </div>
       <div class="mb-3">
         <label for="field" class="form-label">lĩnh vực</label>
-        <input type="text" name="field" class="form-control" id="field" placeholder="Lĩnh vực...">
+        <select name="field" class="form-select field">
+          <option>Lĩnh vực</option>
+          <option value="Công nghệ">Công nghệ</option>
+          <option value="Nhà hàng">Nhà hàng</option>
+          <option value="Khách sạn">Khách sạn</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="typeCompany" class="form-label">Loại hình</label>
-        <input type="text" name="typeCompany" class="form-control" id="typeCompany" placeholder="Loại hình...">
+        <select name="typeCompany" class="form-select typeCompany" aria-label="Default select dark">
+          <option>Loại hình</option>
+          <option value="TNHH">Trách nhiệm hữu hạn</option>
+          <option value="Cổ phần">Cổ phần</option>
+          <option value="Tập đoàn">Tập đoàn</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Địa chỉ</label>
         <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ...">
       </div>
       <div class="mb-3">
-        <label for="albums" class="form-label">Ảnh nổi bật</label>
-        <input type="file" name='albums' multiple class="albums">
+        {{!-- <label for="albums" class="form-label">Ảnh nổi bật</label>
+        <input type="file" multiple name="albums" class="form-control" id="albums"> --}}
+        <div class="upload-img">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="form-group">
+                <label for="albums" class="form-label">Ảnh nổi bật</label>
+                <input type="file" multiple name="albums" class="form-control" id="albums">
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="preview-images"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -41,3 +69,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+

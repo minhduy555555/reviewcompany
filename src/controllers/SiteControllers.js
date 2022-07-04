@@ -12,7 +12,8 @@ class SiteControllers {
         res.render("home", {
           company,
         });
-      });
+      })
+      .catch(next)
   }
 
   // [GET] /home/companies
