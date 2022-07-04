@@ -1,0 +1,43 @@
+
+<form class="form-wraper mt-4" method="POST" action="/create/post/company">
+  <div class="wrap-group">
+    <div class="wraper-company">
+      <div class="mb-3">
+        <label for="nameCompany" class="form-label">Tên công ty</label>
+        <input type="text" name="name" class="form-control" id="nameCompany" placeholder="Tên công ty...">
+      </div>
+      <div class="mb-3">
+        <label for="slogan" class="form-label">slogan</label>
+        <input type="text" name="slogan" class="form-control" id="slogan" placeholder="slogan...">
+      </div>
+      <div class="mb-3">
+        <label for="logoCompany" class="form-label">Logo</label>
+        <input type="file" name="logo" class="form-control" id="logoCompany" placeholder="Logo...">
+      </div>
+      <div class="mb-3">
+        <label for="field" class="form-label">lĩnh vực</label>
+        <input type="text" name="field" class="form-control" id="field" placeholder="Lĩnh vực...">
+      </div>
+      <div class="mb-3">
+        <label for="typeCompany" class="form-label">Loại hình</label>
+        <input type="text" name="typeCompany" class="form-control" id="typeCompany" placeholder="Loại hình...">
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Địa chỉ</label>
+        <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ...">
+      </div>
+      <div class="mb-3">
+        <label for="albums" class="form-label">Ảnh nổi bật</label>
+        <input type="file" name='albums' multiple class="albums">
+      </div>
+    </div>
+
+    <div class="description">
+      <div class="mb-3">
+        <label for="description" class="form-label"></label>
+        <textarea class="description" name="description" id="" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

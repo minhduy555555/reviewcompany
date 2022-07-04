@@ -3,29 +3,49 @@
         <h3 class="title">Các công ty nổi bật</h3>
         <a class="view-more" href="/home/companies">xem tất cả</a>
     </div>
-    <div class="row">
+    <div class="row slick-wrap">
         {{#each company}}
         <div class="col-lg-3">
-            <a href="">
-                <img class="logo-congty"
-                    src="{{this.logo}}"
-                    alt="logo-congty">
-                <h3>{{this.name}}</h3>
-                <p>{{this.slogan}}</p>
-                <p>lĩnh vực: {{this.field}}</p>
-                <p>{{this.address}}</p>
-                <ul>
+            <a class="company-item" href="">
+                <div>
+                    <img class="logo-congty" src="{{this.logo}}" alt="logo-congty">
+                    <div class="company-name">
+                        <h3>{{this.name}}</h3>
+                        <p>{{this.slogan}}</p>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <span><i class="fa-solid fa-house-chimney-window"></i></span>
+                            <span>Lĩnh vực : {{this.field}}</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <span><i class="fa-solid fa-people-roof"></i></span>
+                            <span>Loại hình : Cổ phần</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <span><i class="icon-locol fa-solid fa-location-dot"></i></span>
+                            <span>Địa chỉ : {{this.address}}</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="buton-wrap">
                     <li>
                         <i class="fa-solid fa-thumbs-up"></i>
                         <span>{{this.like}}</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-comment"></i>
-                        <span>{{this.comments}}</span>
+                        <span>{{this.comment}}</span>
                     </li>
                 </ul>
             </a>
+
         </div>
         {{/each}}
     </div>
 </div>
+

@@ -1,33 +1,56 @@
-
-    
-<div class="home">
+<div class="home-companies">
     <div class="title-wrap">
-        <h3 class="title">Tất cả công ty</h3>
+        <h3 class="title">Tất cả công ty ({{total}})</h3>
         <a class="view-more" href="/">Các Công Ty Nổi Bật</a>
     </div>
+
     <div class="row">
         {{#each company}}
         <div class="col-lg-3">
-            <a href="">
-                <img class="logo-congty"
-                    src="{{this.logo}}"
-                    alt="logo-congty">
-                <h3>{{this.name}}</h3>
-                <p>{{this.slogan}}</p>
+            <a class="company-link" href="">
+                <div class="name-logo">
+                    <img class="logo-congty" src="{{this.logo}}" alt="logo-congty">
+                    <div>
+                        <h3>{{this.name}}</h3>
+                        <p>{{this.slogan}}</p>
+                    </div>
+                </div>
                 <p>lĩnh vực: {{this.field}}</p>
-                <p>{{this.address}}</p>
-                <ul>
+                <p>Loại hình: {{this.field}}</p>
+                <p>Địa chỉ: {{this.address}}</p>
+                <ul class="like-comment">
                     <li>
                         <i class="fa-solid fa-thumbs-up"></i>
                         <span>{{this.like}}</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-comment"></i>
-                        <span>{{this.comments}}</span>
+                        <span>{{this.comment}}</span>
                     </li>
                 </ul>
             </a>
         </div>
         {{/each}}
+    </div>
+
+    <div class="pagination-wrap">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                {{#each  arrtotalPage}} 
+                    <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
+                {{/each}}
+                
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>

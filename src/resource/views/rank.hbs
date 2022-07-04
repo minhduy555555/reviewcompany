@@ -1,0 +1,27 @@
+<div class="rank">
+    <div>
+        <h3>Bảng xếp hạng</h3>
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Top</th>
+                <th scope="col">Công ty</th>
+                <th scope="col">Lĩnh vực</th>
+                <th scope="col">Loại hình</th>
+                <th scope="col">Lượt đánh giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each company}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.field}}</td>
+                <td>{{this.typeCompany}}</td>
+                <td>{{this.like}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
