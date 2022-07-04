@@ -55,6 +55,16 @@ class SiteControllers {
         });
       });
   }
+
+// [GET] /login
+login(req, res, next) {
+  res.render('login', {layout: false})
+}
+
+// [GET] /register
+register(req, res, next) {
+  res.render('register', {layout: false})
+}
 }
 
 module.exports = new SiteControllers();

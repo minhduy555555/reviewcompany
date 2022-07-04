@@ -7,7 +7,7 @@ const database = require("./config/database")
 
 database.connect()
 const app = express()
-const port = 3000
+const port = 3001
 
 // app.use(morgan('combined'))
 // Cho phép lý dữ liệu từ form method POST
