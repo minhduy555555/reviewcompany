@@ -1,4 +1,4 @@
-<form class="form-wraper mt-4" method="POST" action="/create/post/company">
+<form class="form-wraper mt-4" enctype="multipart/form-data" method="POST" action="/create/post/company">
   <h3>Thêm công ty mới</h3>
   <div class="wrap-group">
     <div class="wraper-company">
@@ -44,7 +44,7 @@
             <div class="col-sm-8">
               <div class="form-group">
                 <label for="albums" class="form-label">Ảnh nổi bật</label>
-                <input type="file" multiple name="albums" class="form-control" id="albums">
+                <input type="file" accept="image/*" multiple name="albums" class="form-control" id="albums">
               </div>
             </div>
           </div>

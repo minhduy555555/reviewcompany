@@ -2,7 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
 var cookieParser = require('cookie-parser')
-
+const bodyParser= require('body-parser')
+const multer = require('multer');
 var middlewares = require('./middlewares/authent')
 const { engine } = require('express-handlebars')
 const route = require("./routes")
@@ -10,11 +11,14 @@ const database = require("./config/database")
 
 database.connect()
 const app = express()
-const port = 3001
+const port = 3000
 
 // app.use(morgan('combined'))
 // Cho phép lý dữ liệu từ form method POST
 app.use(express.urlencoded({extended: true}))
+
+//CREATE EXPRESS APP
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(cookieParser())
 

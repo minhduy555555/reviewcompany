@@ -34,18 +34,19 @@
       <div class="col-lg-4 account">
          <ul>
              {{#if userName}}
-            <li class="notifi">
-               <i class="fa-solid fa-bell"></i>
-               <span>350</span>
-            </li>
-               {{/if}}
-             {{#if userName}}
-            <li class="account-item">
-               <img class="avarta" src="{{avatar}}" alt="avarta">
-               <h4 class="user-name">{{userName}}</h4>
-            </li>
+               <li class="notifi">
+                  <i class="fa-solid fa-bell"></i>
+                  <span>350</span>
+               </li>
+            {{/if}}
 
-            <a href="/logout" class="loginBtn">Đăng xuất</a>
+            {{#if userName}}
+               <li class="account-item">
+                  <img class="avarta" src="{{avatar}}" alt="avarta">
+                  <h4 class="user-name">{{userName}}</h4>
+               </li>
+
+               <a href="/logout" class="loginBtn">Đăng xuất</a>
             {{/if}}
 
             {{#unless userName}}

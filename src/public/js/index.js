@@ -67,3 +67,13 @@ $(document).ready(function () {
     imagesPreview(this, "div.preview-images");
   });
 });
+
+
+// carousel
+
+const myCarouselElement = document.querySelector('#carouselExampleControls')
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+  interval: 20000,
+  rede: true,
+  wrap: true
+})

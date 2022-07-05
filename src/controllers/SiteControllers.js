@@ -1,5 +1,7 @@
 const Company = require("../models/company");
-const Account = require('../models/account');
+const Account = require("../models/account");
+var middlewares = require("../middlewares/authent");
+
 class SiteControllers {
   // [GET] /
   home(req, res, next) {
@@ -13,7 +15,7 @@ class SiteControllers {
           company,
         });
       })
-      .catch(next)
+      .catch(next);
   }
 
   // [GET] /home/companies
@@ -46,9 +48,9 @@ class SiteControllers {
   // [GET] /rank
   rankCompanies(req, res, next) {
     Company.find({})
-    .lean()
-    .limit(10)
-    .sort({like: "desc"})
+      .lean()
+      .limit(10)
+      .sort({ like: "desc" })
       .then((company) => {
         res.render("rank", {
           company,
@@ -56,46 +58,69 @@ class SiteControllers {
       });
   }
 
-// [GET] /login
-login(req, res, next) {
-  res.render('login', {layout: false})
-}
+  // [GET] /login
+  login(req, res, next) {
+    res.render("login", { layout: false });
+  }
 
+  // [post] /login
+  postLogin(req, res, next) {
+    Account.findOne({ email: req.body.email })
+      .lean()
+      .then((user) => {
+        if (!user) {
+          res.render("login", {
+            err: "Tài khoản này không tồn tại",
+            layout: false,
+          });
+          return;
+        }
+        if (user.password != req.body.password) {
+          res.render("login", { err: "Mật Khẩu Không Đúng", layout: false });
+          return;
+        }
+        res.cookie("userId ", user._id);
+        res.redirect("/");
+      });
+  }
 
-// [post] /login
-postLogin(req, res, next) {
-  Account.findOne({email:req.body.email}).lean()
-  .then((user)=>{
-    if(!user){
-      res.render('login',{err:"Tài khoản này không tồn tại", layout: false})
-      return
-    }
-    if(user.password != req.body.password){
-      res.render('login',{err:"Mật Khẩu Không Đúng", layout: false})
-      return
-    }
-    res.cookie('userId ',user._id)
-    res.redirect('/')
-  })
-}
-// [GET] /register
-register(req, res, next) {
-  res.render('register', {layout: false})
-}
-// [post] /register
-postRegister(req, res, next){
-    var newAccount = new Account(req.body)
-    newAccount.save()
-    .then(()=>{
-      res.redirect('/login')
-    })
-}
-//[get] /logout
-logout(req, res, next){
-  res.clearCookie('userId')
-  res.redirect('/')
-}
-}
+  // [GET] /register
+  register(req, res, next) {
+    res.render("register", { layout: false });
+  }
 
+  // [post] /register
+  postRegister(req, res, next) {
+    var newAccount = new Account(req.body);
+    newAccount.save().then(() => {
+      res.redirect("/login");
+    });
+  }
+  //[get] /logout
+  logout(req, res, next) {
+    res.clearCookie("userId");
+    res.clearCookie("companyId");
+    res.redirect("/");
+  }
+
+  // [GET] /detail/:slug
+  detail(req, res, next) {
+    Company.findOne({ slug: req.params.slug })
+      .lean()
+      .then((company) => {
+        res.cookie("idCompany", company._id);
+
+        if (req.cookies.idCompany) {
+          res.render("detail", { company });
+        } 
+         else {
+          res.render("err", { layout: false });
+        }
+      })
+      .catch(() => {
+        res.render("err", { layout: false });
+      })
+  }
+}
 
 module.exports = new SiteControllers();

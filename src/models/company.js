@@ -13,6 +13,7 @@ const company = new Schema({
   comment: { type: Number, default: 0 },
   albums: { type: Array },
   description: { type: String },
+  founding: { type: Date, default: Date.now},
   typeCompany: { type: String },
   slug: { type: String, slug: "name", unique: true }
 });
