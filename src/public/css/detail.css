@@ -128,14 +128,7 @@ p {
     margin: 3px 1px;
     border-radius: 3px;
 }
-
-.carousel-item{
-    width: 100%;
-    height: 400px;
-    object-fit: fill;
-}
-
-.footer{
+/* .footer{
     position: fixed;
     bottom: 0;
-}
+} */

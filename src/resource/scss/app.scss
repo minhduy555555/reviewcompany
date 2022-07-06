@@ -330,6 +330,7 @@ p {
 }
 
 .home {
+  margin-bottom: 60px;
   .company-item {
     display: block;
     padding: 2px;
@@ -646,4 +647,13 @@ p {
   .preview-images > img {
     width: 10%;
   }
+}
+
+.rank{
+  min-height: 66vh;
+  width: 100%;
+}
+
+.container{
+  min-height: 66vh;
 }

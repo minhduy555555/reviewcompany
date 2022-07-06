@@ -1,8 +1,7 @@
 const Company = require("../models/company");
 const Account = require("../models/account");
-var middlewares = require("../middlewares/authent");
-
 class SiteControllers {
+
   // [GET] /
   home(req, res, next) {
     Company.find({})

@@ -248,96 +248,93 @@ p {
       background-color: #c89979;
       color: #fff; }
 
-.home .company-item {
-  display: block;
-  padding: 2px;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
-  border: 4px solid #333333;
-  height: 366px;
-  margin: 0 10px; }
-  .home .company-item .company-name {
-    min-height: 80px; }
-    .home .company-item .company-name h3 {
-      font-size: 1.6rem;
-      color: #333333;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 12px 10px 2px;
-      margin: 0; }
-    .home .company-item .company-name p {
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: #c89979;
-      padding: 0 10px 10px; }
-  .home .company-item .field {
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem; }
-    .home .company-item .field div {
+.home {
+  margin-bottom: 60px; }
+  .home .company-item {
+    display: block;
+    padding: 2px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+    border: 4px solid #333333;
+    height: 366px;
+    margin: 0 10px; }
+    .home .company-item .company-name {
+      min-height: 80px; }
+      .home .company-item .company-name h3 {
+        font-size: 1.6rem;
+        color: #333333;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 12px 10px 2px;
+        margin: 0; }
+      .home .company-item .company-name p {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #c89979;
+        padding: 0 10px 10px; }
+    .home .company-item .field {
+      padding: 0 10px;
       display: flex;
-      justify-content: center;
-      margin-right: 6px;
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: #333333; }
-      .home .company-item .field div span {
-        margin-right: 4px;
-        min-width: 20px;
+      align-items: center;
+      font-size: 1.5rem; }
+      .home .company-item .field div {
         display: flex;
-        align-items: center;
         justify-content: center;
-        overflow: hidden;
-        line-height: 1.8rem;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2; }
-        .home .company-item .field div span .icon-locol {
-          font-size: 1.6rem;
-          margin-top: 4px; }
-
-.home .buton-wrap {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px; }
-  .home .buton-wrap li {
-    font-size: 1.8rem; }
-
-.home .logo-congty {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid #c89979; }
-
-.home .title {
-  font-size: 2.6rem;
-  color: #333333;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin: 20px;
-  display: block;
-  text-align: center; }
-
-.home .title-wrap {
-  position: relative; }
-
-.home .view-more {
-  position: absolute;
-  top: 0;
-  right: 40px;
-  border-radius: 5px;
-  margin: 0 8px;
-  padding: 4px 8px;
-  font-size: 1.6rem;
-  color: black;
-  background-color: transparent;
-  border: 1px solid #333333;
-  text-transform: capitalize; }
-  .home .view-more:hover {
-    background-color: #c89979;
-    color: #fff; }
+        margin-right: 6px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #333333; }
+        .home .company-item .field div span {
+          margin-right: 4px;
+          min-width: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          line-height: 1.8rem;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; }
+          .home .company-item .field div span .icon-locol {
+            font-size: 1.6rem;
+            margin-top: 4px; }
+  .home .buton-wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px; }
+    .home .buton-wrap li {
+      font-size: 1.8rem; }
+  .home .logo-congty {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #c89979; }
+  .home .title {
+    font-size: 2.6rem;
+    color: #333333;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 20px;
+    display: block;
+    text-align: center; }
+  .home .title-wrap {
+    position: relative; }
+  .home .view-more {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    border-radius: 5px;
+    margin: 0 8px;
+    padding: 4px 8px;
+    font-size: 1.6rem;
+    color: black;
+    background-color: transparent;
+    border: 1px solid #333333;
+    text-transform: capitalize; }
+    .home .view-more:hover {
+      background-color: #c89979;
+      color: #fff; }
 
 .home-companies .company-link {
   border: 2px solid #333333;
@@ -509,3 +506,10 @@ p {
 
 .upload-img .preview-images > img {
   width: 10%; }
+
+.rank {
+  min-height: 66vh;
+  width: 100%; }
+
+.container {
+  min-height: 66vh; }
