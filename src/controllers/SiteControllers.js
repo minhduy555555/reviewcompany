@@ -104,13 +104,15 @@ class SiteControllers {
 
   // [GET] /detail/:slug
   detail(req, res, next) {
+
+    // Comment =Comment.find({idCompany :})
     Company.findOne({ slug: req.params.slug })
       .lean()
       .then((company) => {
         res.cookie("idCompany", company._id);
-
+        var idUser =  req.cookies.userId
         if (req.cookies.idCompany) {
-          res.render("detail", { company });
+          res.render("detail", { company, idUser});
         } 
          else {
           res.render("err", { layout: false });
@@ -120,6 +122,8 @@ class SiteControllers {
         res.render("err", { layout: false });
       })
   }
+
+  // Comment.find()
 }
 
 module.exports = new SiteControllers();
