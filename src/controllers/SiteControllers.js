@@ -111,8 +111,11 @@ class SiteControllers {
       .then((company) => {
         res.cookie("idCompany", company._id);
         var idUser =  req.cookies.userId
+        var img1 = company.albums[0].filename
+        var img2 = company.albums[1].filename
+        var img3 = company.albums[2].filename
         if (req.cookies.idCompany) {
-          res.render("detail", { company, idUser});
+          res.render("detail", { company, idUser,img1,img2,img3});
         } 
          else {
           res.render("err", { layout: false });

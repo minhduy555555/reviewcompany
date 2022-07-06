@@ -10,67 +10,73 @@ class CreateControllers {
 
   // [POST] /create/post/company
   postCompany(req, res, next) {
-    const file = req.file;
+    
+
+    //nhận dữ liệu từ form mảng thông số của các file upload
+    const files = req.files;
     // Kiểm tra nếu không phải dạng file thì báo lỗi
-    if (!file) {
-      const error = new Error("Upload file again!");
-      error.httpStatusCode = 400;
-      return next(error);
-    }
-    // file đã được lưu vào thư mục uploads
-    // gọi tên file: req.file.filename và render ra màn hình
-    var logoCompany = req.file.filename;
+    if (!files) {
+        const error = new Error('Upload files again')
+        error.httpStatusCode = 400
+        return next(error)
+      }
+    
+    // files đã được lưu vào thư mục uploads
+    // hiển thị thông số các ảnh ra màn hình
+    console.log(files)
 
     var newCompanyData = new Company(req.body);
-    newCompanyData.logo = logoCompany;
+    newCompanyData.albums = files
     // console.log(newCompanyData)
     newCompanyData
       .save()
-      .then(() => res.redirect("/home/companies"))
-      .catch(next);
+      .then(() => res.redirect(`/detail/${newCompanyData.slug}`))
+      .catch(next)
   }
 
   // [POST] /create/comment
   postComment(req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
 
-    Comment.aggregate([
+    var result =  Comment.aggregate([
       {
         $lookup: {
-          from: Lop.collection.name,
-          localField: "maLop",
+          from: Account,
+          localField: "idUser",
           foreignField: "_id",
-          as: "lop",
+          as: "account",
         },
       },
       {
         $replaceRoot: {
-          newRoot: { $mergeObjects: [{ $arrayElemAt: ["$lop", 0] }, "$$ROOT"] },
+          newRoot: { $mergeObjects: [{ $arrayElemAt: ["$account", 0] }, "$$ROOT"] },
         },
       },
       {
         $lookup: {
-          from: Khoa.collection.name,
-          localField: "maKhoa",
+          from: Company,
+          localField: "idCompany",
           foreignField: "_id",
-          as: "khoa",
+          as: "company",
         },
       },
       {
         $replaceRoot: {
           newRoot: {
-            $mergeObjects: [{ $arrayElemAt: ["$khoa", 0] }, "$$ROOT"],
+            $mergeObjects: [{ $arrayElemAt: ["$company", 0] }, "$$ROOT"],
           },
         },
       },
       {
         $group: {
-          _id: "$maKhoa",
-          tenKhoa: { $first: "$tenKhoa" },
-          SLSinhVien: { $sum: 1 },
+          _id: "$_id",
+          idUser: "$idUser",
+          idCompany: "$idCompany",
         },
       },
     ]);
+
+    console.log('result' , result)
 
     let newCommentData = new Comment(req.body);
     newCommentData
