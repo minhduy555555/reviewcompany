@@ -1,5 +1,6 @@
 const Company = require("../models/company");
 const Account = require("../models/account");
+const Comment = require("../models/comment");
 class SiteControllers {
 
   // [GET] /
@@ -104,28 +105,92 @@ class SiteControllers {
 
   // [GET] /detail/:slug
   detail(req, res, next) {
+   Company.findOne({ slug: req.params.slug }).lean()
+   .then((company) => {
+          res.cookie("idCompany", company._id);
+          return company
+   })
+   .then(async (company)=>{
+    var idUser =  req.cookies.userId
+    var img1 = company.albums[0].filename
+    var img2 = company.albums[1].filename
+    var img3 = company.albums[2].filename
+    var fillterComment =[]
+    var massage = await Comment.find({idCompany:company._id}).lean().sort({createdAt:-1})
+    var countComment = Comment.find({idCompany:company._id}).count({})
+    var user = Account.find({}).lean()
+    Promise.all([massage,user,countComment])
+    .then(([massage,user,countComment])=>{
+          massage.map((massageCurrent)=>{
+                user.find((useCurrent)=>{
+                        if(massageCurrent.idUser == useCurrent._id){
+                           var infoMass = Object.assign(massageCurrent,useCurrent)
+                           fillterComment.push(infoMass)
+                         } 
+                       })
+                     })
+                       res.render("detail", { company, idUser,img1,img2,img3,fillterComment,countComment});
+                   })
+        if(!req.cookies.idCompany) {
+         res.render("err", { layout: false });
+       }
 
-    // Comment =Comment.find({idCompany :})
-    Company.findOne({ slug: req.params.slug })
-      .lean()
-      .then((company) => {
-        res.cookie("idCompany", company._id);
-        var idUser =  req.cookies.userId
-        var img1 = company.albums[0].filename
-        var img2 = company.albums[1].filename
-        var img3 = company.albums[2].filename
-        if (req.cookies.idCompany) {
-          res.render("detail", { company, idUser,img1,img2,img3});
-        } 
-         else {
-          res.render("err", { layout: false });
-        }
-      })
-      .catch(() => {
-        res.render("err", { layout: false });
-      })
+   })
+   .then(()=>{
+    res.clearCookie("companyId");
+   })
+  }
+  field(req,res,next){
+    var page = req.query.page;
+    if (!req.query.page) {
+      page = 1;
+    }
+    const size = 8;
+    const limit = size;
+    const skip = (page - 1) * size;
+
+    Promise.all([
+      Company.count({field:req.params.field}),
+      Company.find({field:req.params.field}).lean().skip(skip).limit(limit),
+    ]).then(([total, company]) => {
+      var totalPage = Math.ceil(total / size);
+      var arrtotalPage = [];
+      for (var i = 1; i < totalPage + 1; i++) {
+        arrtotalPage.push(i);
+      }
+      res.render("homeCompanies", {
+        company,
+        total,
+        arrtotalPage,
+      });
+    }); 
   }
 
+  search(req,res,next){
+    var page = req.query.page;
+    if (!req.query.page) {
+      page = 1;
+    }
+    const size = 8;
+    const limit = size;
+    const skip = (page - 1) * size;
+
+    Promise.all([
+      Company.count({name:req.query.name.toUpperCase()}),
+      Company.find({name:req.query.name.toUpperCase()}).lean().skip(skip).limit(limit),
+    ]).then(([total, company]) => {
+      var totalPage = Math.ceil(total / size);
+      var arrtotalPage = [];
+      for (var i = 1; i < totalPage + 1; i++) {
+        arrtotalPage.push(i);
+      }
+      res.render("homeCompanies", {
+        company,
+        total,
+        arrtotalPage,
+      });
+    }); 
+  }
   // Comment.find()
 }
 
