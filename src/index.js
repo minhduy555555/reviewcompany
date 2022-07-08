@@ -8,10 +8,13 @@ var middlewares = require('./middlewares/authent')
 const { engine } = require('express-handlebars')
 const route = require("./routes")
 const database = require("./config/database")
+var methodOverride = require('method-override')
 
 database.connect()
 const app = express()
 const port = 3000
+
+app.use(methodOverride('_method'))
 
 // app.use(morgan('combined'))
 // Cho phép lý dữ liệu từ form method POST

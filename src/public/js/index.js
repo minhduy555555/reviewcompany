@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 const myCarouselElement = document.querySelector('#carouselExampleControls')
 const carousel = new bootstrap.Carousel(myCarouselElement, {
-  interval: 20000,
+  interval: 2000,
   rede: true,
   wrap: true
 })

@@ -5,7 +5,7 @@ var middlewares = require('../middlewares/authent')
 
 // chú ý tuyến đường đi từ trên xuống
 router.get('/detail/:slug', siteController.detail)
-router.post('/like/company/:slug', siteController.likeCompany)
+router.patch('/like/company/:id', siteController.likeCompany)
 router.get('/company/search', siteController.search)
 router.get('/login', siteController.login)
 router.post('/login', siteController.postLogin)

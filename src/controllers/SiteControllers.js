@@ -103,7 +103,9 @@ class SiteControllers {
 
   // [post] /like/company/:slug
   likeCompany(req, res, next) {
-    Company.findOneAndUpdate({ slug: req.params.slug }, {like: like+1})
+    Company.findOneAndUpdate({ _id: req.params.id }, {
+      $addToSet: {like: req.query.idUser}
+    })
     .then(() => {
       res.redirect("back");
     });
@@ -145,8 +147,19 @@ class SiteControllers {
                 }
               });
             });
+
+            fillterComment.forEach((e) => {
+              var time = `${e.createdAt.getHours()}h/${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}` 
+              e.createdAt = time
+            })
+
+            // console.log(fillterComment)
+            
+             var totalLike = company.like.length
+
             res.render("detail", {
               company,
+              totalLike,
               idUser,
               img1,
               img2,

@@ -77,7 +77,7 @@ class CreateControllers {
       },
     ]);
 
-    console.log('result' , result)
+    // console.log('result' , result)
 
     let newCommentData = new Comment(req.body);
     newCommentData
