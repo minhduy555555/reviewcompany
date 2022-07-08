@@ -23,9 +23,10 @@ class CreateControllers {
     
     // files đã được lưu vào thư mục uploads
     // hiển thị thông số các ảnh ra màn hình
-    console.log(files)
+    // console.log(files)
 
     var newCompanyData = new Company(req.body);
+    newCompanyData.logo = files[0].filename
     newCompanyData.albums = files
     // console.log(newCompanyData)
     newCompanyData

@@ -9,18 +9,25 @@
                 <th scope="col">Công ty</th>
                 <th scope="col">Lĩnh vực</th>
                 <th scope="col">Loại hình</th>
-                <th scope="col">Lượt đánh giá</th>
+                <th style="text-align: center;" scope="col">Lượt đánh giá</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             {{#each company}}
-            <tr>
-                <th scope="row">{{sum @index 1}}</th>
-                <td>{{this.name}}</td>
-                <td>{{this.field}}</td>
-                <td>{{this.typeCompany}}</td>
-                <td>{{this.like}}</td>
-            </tr>
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.field}}</td>
+                    <td>{{this.typeCompany}}</td>
+                    <td style="text-align: center;" >{{this.like}}</td>
+                    <td>
+               <a 
+                    style="color: rgb(14, 120, 234);" 
+                    href="/detail/{{this.slug}}" class="loginBtn">xem chi tiết</a>
+
+                    </td>
+                </tr>
             {{/each}}
         </tbody>
     </table>

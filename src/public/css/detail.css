@@ -132,3 +132,16 @@ p {
     position: fixed;
     bottom: 0;
 } */
+
+.group-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likeBtn{
+    font-size: 3rem;
+    color: rgb(0, 89, 255); 
+    padding: 10px 20px;   
+    cursor: pointer;
+}
