@@ -9,7 +9,13 @@ class SiteControllers {
       .skip(0)
       .limit(10)
       .then((company) => {
-        // console.log(company)
+        company.forEach((e) => {
+          e.totalLike = e.like.length-1
+          if(e.totalLike <= 0) {
+            e.totalLike = 0
+          }
+        })
+
         res.render("home", {
           company,
         });
@@ -30,12 +36,21 @@ class SiteControllers {
     Promise.all([
       Company.count({}),
       Company.find({}).lean().skip(skip).limit(limit),
-    ]).then(([total, company]) => {
+    ])
+    .then(([total, company]) => {
       var totalPage = Math.ceil(total / size);
       var arrtotalPage = [];
       for (var i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
+
+      company.forEach((e) => {
+        e.totalLike = e.like.length-1
+        if(e.totalLike <= 0) {
+          e.totalLike = 0
+        }
+      })
+
       res.render("homeCompanies", {
         company,
         total,
@@ -155,7 +170,10 @@ class SiteControllers {
 
             // console.log(fillterComment)
             
-             var totalLike = company.like.length
+            var totalLike = company.like.length-1
+        if(totalLike <= 0) {
+          totalLike = 0
+        }
 
             res.render("detail", {
               company,
@@ -196,6 +214,7 @@ class SiteControllers {
       for (var i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
+
       res.render("homeCompanies", {
         company,
         total,

@@ -9,7 +9,7 @@ const company = new Schema({
   slogan: { type: String },
   field: { type: String },
   address: { type: String },
-  like: { type: Array},
+  like: { type: Array, default: [""]},
   view: { type: Number, default: 0 },
   albums: { type: Array },
   description: { type: String },
