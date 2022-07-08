@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const siteController = require("../controllers/SiteControllers")
-var middlewares = require('../middlewares/authent')
+var upload = require("../middlewares/mdwupload")
+
 
 // chú ý tuyến đường đi từ trên xuống
+router.put('/profile/update/:slug',upload.single('avatar'), siteController.updateProfile)
+router.get('/profile/:slug', siteController.profile)
 router.get('/detail/:slug', siteController.detail)
 router.patch('/like/company/:id', siteController.likeCompany)
 router.get('/company/search', siteController.search)

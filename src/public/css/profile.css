@@ -1,0 +1,12 @@
+
+/* .form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+} */
+
+.form-group{
+    /* width: 50%; */
+    padding: 10px 20px;
+}

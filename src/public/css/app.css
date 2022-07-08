@@ -98,19 +98,19 @@ p {
         background-color: #c89979; }
         .header .search .search-wrap button:hover {
           background-color: #ae8366; }
-  .header .account ul {
+  .header .account .account-wr {
     display: flex;
     align-items: center;
     justify-content: flex-end; }
-    .header .account ul .notifi {
+    .header .account .account-wr .notifi {
       margin: 0px 8px;
       position: relative;
       cursor: pointer; }
-      .header .account ul .notifi i {
+      .header .account .account-wr .notifi i {
         font-size: 1.8rem;
         color: #fff;
         padding: 4px 8px; }
-      .header .account ul .notifi span {
+      .header .account .account-wr .notifi span {
         position: absolute;
         top: -6px;
         right: 40%;
@@ -149,6 +149,9 @@ p {
     .header .account .loginBtn:hover {
       background-color: #c89979;
       color: #fff; }
+
+.dropdown-menu {
+  width: 100%; }
 
 .header-nav ul {
   display: flex;

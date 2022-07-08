@@ -145,3 +145,15 @@ p {
     padding: 10px 20px;   
     cursor: pointer;
 }
+
+.like{
+    display: none;
+}
+
+.likeBtn.active .like{
+    display: block;
+}
+
+.likeBtn.active .dislike{
+    display: none;
+}

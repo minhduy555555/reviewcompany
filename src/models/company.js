@@ -12,6 +12,7 @@ const company = new Schema({
   like: { type: Array, default: [""]},
   view: { type: Number, default: 0 },
   albums: { type: Array },
+  author: {type: String},
   description: { type: String },
   founding: { type: Date, default: Date.now},
   typeCompany: { type: String },

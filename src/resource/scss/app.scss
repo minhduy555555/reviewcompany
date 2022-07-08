@@ -127,7 +127,7 @@ p {
   }
 
   .account {
-    ul {
+    .account-wr{
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -194,6 +194,10 @@ p {
       }
     }
   }
+}
+
+.dropdown-menu{
+  width: 100%;
 }
 
 .header-nav {

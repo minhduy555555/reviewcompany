@@ -108,6 +108,29 @@ class SiteControllers {
     res.render("contact");
   }
 
+  
+
+  // [PUT] /profile/update/:slug
+  updateProfile(req, res, next) {
+    const file = req.file;
+    // Kiểm tra nếu không phải dạng file thì báo lỗi
+    if (!file) {
+        const error = new Error('Upload file again!')
+        error.httpStatusCode = 400
+        return next(error)
+      }
+    // file đã được lưu vào thư mục uploads
+    // gọi tên file: req.file.filename và render ra màn hìnhe
+      const  accountUpdate={
+        avatar: req.file.filename,
+        ...req.body
+      }
+
+      Account.updateOne({ slug: req.params.slug }, accountUpdate)
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+
   // [post] /register
   postRegister(req, res, next) {
     var newAccount = new Account(req.body);
@@ -124,6 +147,18 @@ class SiteControllers {
     .then(() => {
       res.redirect("back");
     });
+  }
+
+
+  // [GET] /profile/:slug
+  profile(req, res, next) {
+    Account.findOne({slug: req.params.slug})
+      .then(async (user) => {
+        var avatar = user.avatar 
+        var userName = user.userName
+        var slug = user.slug
+        res.render("profile", { avatar, userName, slug});
+      })
   }
 
   //[get] /logout
@@ -196,6 +231,7 @@ class SiteControllers {
       });
   }
 
+// [GET] /
   sortField(req, res, next) {
     var page = req.query.page;
     if (!req.query.page) {

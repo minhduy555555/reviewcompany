@@ -1,15 +1,13 @@
-
-
 <div class="header">
    <div class="header-infor">
       <ul>
          <li>
             <i class="fa-solid fa-location-dot"></i>
-              14, Doãn Uẩn, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng
+            14, Doãn Uẩn, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng
          </li>
          <li>
             <i class="fa-solid fa-phone"></i>
-             0916074130
+            0916074130
          </li>
       </ul>
       <ul>
@@ -17,7 +15,7 @@
          <li><a class="icon" href="#"><i class="fa-brands fa-instagram"></i></a></li>
          <li><a class="icon" href="#"><i class="fa-brands fa-twitter"></i></a></li>
       </ul>
-   </div> 
+   </div>
 
    <div class="search row">
       <div class="col-lg-4 logo">
@@ -32,21 +30,35 @@
       </form method="GET" action="#">
 
       <div class="col-lg-4 account">
-         <ul>
-             {{#if userName}}
-               <li class="notifi">
-                  <i class="fa-solid fa-bell"></i>
-                  <span>350</span>
-               </li>
+         <ul class="account-wr">
+            {{#if userName}}
+            <li class="notifi">
+               <i class="fa-solid fa-bell"></i>
+               <span>350</span>
+            </li>
             {{/if}}
 
             {{#if userName}}
-               <li class="account-item">
-                  <img class="avarta" src="{{avatar}}" alt="avarta">
-                  <h4 class="user-name">{{userName}}</h4>
-               </li>
+            <div class="dropdown">
+               <a class=" account-item btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                  data-bs-toggle="dropdown" aria-expanded="false">
 
-               <a href="/logout" class="loginBtn">Đăng xuất</a>
+                  {{#if avatar}}
+                  <img class="avarta" src="/img-video/{{avatar}}" alt="avarta">
+                  {{else}}
+                  <img class="avarta"
+                     src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=7206a8&_nc_ohc=VEahJ2Ps3kMAX8uqwfO&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rHxUn0aY1ejPx5MbSrV2mGBtZso_3tCyoHwhcwQByjg&oe=62EE1078"
+                     alt="avarta">
+                  {{/if}}
+                  <h4 class="user-name">{{userName}}</h4>
+               </a>
+
+               <ul style="width: 100%" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/profile/{{slug}}">Hồ sơ</a></li>
+                  <li><a class="dropdown-item" href="#">Bài viết của tôi</a></li>
+                  <li><a href="/logout" class="dropdown-item">Đăng xuất</a></li>
+               </ul>
+            </div>
             {{/if}}
 
             {{#unless userName}}

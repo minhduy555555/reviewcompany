@@ -77,3 +77,11 @@ const carousel = new bootstrap.Carousel(myCarouselElement, {
   rede: true,
   wrap: true
 })
+
+// handle like
+
+// const likeBtn = document.querySelector('.likeBtn')
+
+// likeBtn.onclick = () => {
+//   likeBtn.classList.add('active');
+// }

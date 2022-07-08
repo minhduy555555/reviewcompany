@@ -16,13 +16,19 @@
                             </div>
                         </div>
 
-                        <div class="likeBtn">
-                            <form method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
-                                <button type="submit">
+                        <div class="likeBtn likeBtn">
+                            <form class="like"  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                                <button style="color: rgb(0, 51, 255)" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
-                                    <span>{{totalLike}}</span>
                                 </button>
                             </form>
+
+                            <form class="dislike" method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                                <button type="submit">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                                <span>{{totalLike}}</span>
 
                         </div>
                     </div>

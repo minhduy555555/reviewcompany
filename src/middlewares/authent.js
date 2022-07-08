@@ -12,9 +12,11 @@ class authentication {
 
   async getUserAndAvt(req, res, next) {
     if (req.cookies.userId) {
-      await Account.findById({ _id: req.cookies.userId }).then((user) => {
+      await Account.findById({ _id: req.cookies.userId })
+      .then((user) => {
         res.locals.avatar = user.avatar;
         res.locals.userName = user.userName;
+        res.locals.slug = user.slug
       });
     }
     next();
