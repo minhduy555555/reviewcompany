@@ -1,0 +1,59 @@
+<div class="home-companies">
+    <div class="title-wrap">
+        <h3 class="title">Tất cả công ty ({{total}})</h3>
+        <a class="view-more" href="/">Các Công Ty Nổi Bật</a>
+    </div>
+
+    <div class="row">
+        {{#each company}}
+        <div class="col-lg-3">
+            <a class="company-link" href="/detail/{{this.slug}}">
+                <div class="name-logo">
+                    <img class="logo-congty" src="/img-video/{{this.logo}}" alt="logo-congty">
+                    <div>
+                        <h3>{{this.name}}</h3>
+                        <p>{{this.slogan}}</p>
+                    </div>
+                </div>
+                <p>lĩnh vực: {{this.field}}</p>
+                <p>Loại hình: {{this.typeCompany}}</p>
+                <p>Địa chỉ: {{this.address}}</p>
+                <ul class="like-comment">
+                    <li>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <span>{{this.totalLike}}</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-comment"></i>
+                        <span>{{this.comment}}</span>
+                    </li>
+                </ul>
+            </a>
+        </div>
+        {{else}}
+        <h2>Không tìm thấy công ty</h2>
+        {{/each}}
+    </div>
+    {{#if company}}
+    <div class="pagination-wrap">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                {{#each  arrtotalPage}} 
+                    <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
+                {{/each}}
+                
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    {{/if}}
+</div>

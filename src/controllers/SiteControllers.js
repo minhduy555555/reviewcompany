@@ -307,7 +307,12 @@ class SiteControllers {
     });
   }
 
-  // Comment.find()
+  stored(req, res, next) {
+    Company.findOne({slug: req.params.slug})
+      .then((company) => {
+        res.render("stored", company)
+      })
+  }
 }
 
 module.exports = new SiteControllers();
