@@ -17,6 +17,7 @@ class authentication {
           res.locals.avatar = user.avatar;
           res.locals.userName = user.userName;
           res.locals.slug = user.slug;
+          res.locals.idUser = user._id;
         }
       });
     }

@@ -21,7 +21,7 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended: true}))
 
 //CREATE EXPRESS APP
-app.use(bodyParser.urlencoded({extended: true}))
+// app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(cookieParser())
 

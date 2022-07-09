@@ -159,14 +159,20 @@ class SiteControllers {
     });
   }
 
-  // [GET] /profile/:slug
+  // [GET] /profile/:slug 
   profile(req, res, next) {
-    Account.findOne({slug: req.params.slug})
-      .then(async (user) => {
+   const user = Account.findOne({slug: req.params.slug})
+   const company = Company.find({author:req.cookies.userId})
+   Promise.all([user,company])
+      .then(async ([user,company]) => {
         var avatar = user.avatar 
         var userName = user.userName
         var slug = user.slug
-        res.render("profile", { avatar, userName, slug});
+        var countLike = company.reduce((tatol,company)=>{
+             return   tatol + (company.like.length -1 )
+        },0)
+        var countPost = company.length
+        res.render("profile", { avatar, userName, slug,countLike,countPost});
       })
   }
 
