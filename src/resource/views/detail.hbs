@@ -17,17 +17,20 @@
                         </div>
 
                         <div class="likeBtn likeBtn">
-                            <form class="like"  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+
+                            {{#if isLike}}
+                            <form class=""  method="POST" action="/unLike/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
                                 <button style="color: rgb(0, 51, 255)" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
                             </form>
-
-                            <form class="dislike" method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
-                                <button type="submit">
+                            {{else}}
+                            <form class=""  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                                <button style="color: rgb(0, 51, 255)" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
                             </form>
+                            {{/if}}
                                 <span>{{totalLike}}</span>
 
                         </div>

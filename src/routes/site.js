@@ -9,6 +9,7 @@ router.put('/profile/update/:slug',upload.single('avatar'), siteController.updat
 router.get('/profile/:slug', siteController.profile)
 router.get('/detail/:slug', siteController.detail)
 router.patch('/like/company/:id', siteController.likeCompany)
+router.patch('/unLike/company/:id', siteController.unLikeCompany)
 router.get('/company/search', siteController.search)
 router.get('/login', siteController.login)
 router.post('/login', siteController.postLogin)

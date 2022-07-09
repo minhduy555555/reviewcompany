@@ -148,7 +148,16 @@ class SiteControllers {
       res.redirect("back");
     });
   }
+  // [post] /unlike/company/:slug
 
+  unLikeCompany(req,res,next){
+    Company.findOneAndUpdate({ _id: req.params.id }, {
+      $pull: {like: req.query.idUser}
+    })
+    .then(() => {
+      res.redirect("back");
+    });
+  }
 
   // [GET] /profile/:slug
   profile(req, res, next) {
@@ -203,15 +212,20 @@ class SiteControllers {
               var time = `${e.createdAt.getHours()}h/${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}` 
               e.createdAt = time
             })
-
             // console.log(fillterComment)
             
             var totalLike = company.like.length-1
-        if(totalLike <= 0) {
-          totalLike = 0
-        }
-
+            if(totalLike <= 0) {
+              totalLike = 0
+            }
+             var isLike
+                   if(company.like.includes(req.cookies.userId)){
+                      isLike = true
+                   }else{
+                    isLike =false
+                   }
             res.render("detail", {
+              isLike,
               company,
               totalLike,
               idUser,
@@ -286,6 +300,7 @@ class SiteControllers {
       });
     });
   }
+
   // Comment.find()
 }
 
