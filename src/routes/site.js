@@ -5,6 +5,7 @@ var upload = require("../middlewares/mdwupload")
 
 
 // chú ý tuyến đường đi từ trên xuống
+router.get('/me/updateCompany/:slug', siteController.updateCompany)
 router.get('/me/stored/:slug', siteController.stored)
 router.delete('/me/delete/:slug', siteController.deleteCompany)
 router.put('/profile/update/:slug',upload.single('avatar'), siteController.updateProfile)

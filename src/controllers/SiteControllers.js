@@ -311,7 +311,6 @@ class SiteControllers {
     Company.find({author: req.params.slug})
       .lean()
       .then((company) => {
-        console.log(company)
         res.render("stored", {company})
       })
   }
@@ -322,7 +321,10 @@ class SiteControllers {
     })
   }
   updateCompany(req, res, next){
-    
+    Company.findOne({slug:req.params.slug}).lean()
+    .then((company)=>{
+      res.render('updateCompany',{company})
+    })
   }
 }
 
