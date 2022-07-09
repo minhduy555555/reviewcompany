@@ -100,7 +100,7 @@ class SiteControllers {
 
   // [GET] /register
   register(req, res, next) {
-    res.render("register", { layout: false });
+    res.render("register", { layout: false })
   }
 
   // [GET] /contact
@@ -176,18 +176,19 @@ class SiteControllers {
         res.cookie("idCompany", company._id);
         return company;
       })
-      .then(async (company) => {
+      .then((company) => {
         var idUser = req.cookies.userId;
         var img1 = company.albums[0].filename;
         var img2 = company.albums[1].filename;
         var img3 = company.albums[2].filename;
         var fillterComment = [];
-        var massage = await Comment.find({ idCompany: company._id })
+        var massage = Comment.find({ idCompany: company._id })
           .lean()
           .sort({ createdAt: -1 });
         var countComment = Comment.find({ idCompany: company._id }).count({});
         var user = Account.find({}).lean();
-        Promise.all([massage, user, countComment]).then(
+        Promise.all([massage, user, countComment])
+        .then(
           ([massage, user, countComment]) => {
             massage.map((massageCurrent) => {
               user.find((useCurrent) => {
@@ -226,9 +227,7 @@ class SiteControllers {
           res.render("err", { layout: false });
         }
       })
-      .then(() => {
-        res.clearCookie("companyId");
-      });
+      .catch(next)
   }
 
 // [GET] /
