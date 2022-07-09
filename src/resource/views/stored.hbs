@@ -28,32 +28,14 @@
                         <span>{{this.comment}}</span>
                     </li>
                 </ul>
+            <form method="post" action="/me/delete/{{{this.slug}}}?_method=DELETE" >
+            <button type="submit">xoa</button>
+            </form>
             </a>
         </div>
         {{else}}
         <h2>Không tìm thấy công ty</h2>
         {{/each}}
     </div>
-    {{#if company}}
-    <div class="pagination-wrap">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-
-                {{#each  arrtotalPage}} 
-                    <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
-                {{/each}}
-                
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    {{/if}}
+   
 </div>

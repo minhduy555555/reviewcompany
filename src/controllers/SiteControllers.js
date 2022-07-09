@@ -308,10 +308,21 @@ class SiteControllers {
   }
 
   stored(req, res, next) {
-    Company.findOne({slug: req.params.slug})
+    Company.find({author: req.params.slug})
+      .lean()
       .then((company) => {
-        res.render("stored", company)
+        console.log(company)
+        res.render("stored", {company})
       })
+  }
+  deleteCompany(req, res, next){
+    Company.deleteOne({slug:req.params.slug})
+    .then(()=>{
+      res.redirect('back')
+    })
+  }
+  updateCompany(req, res, next){
+    
   }
 }
 
