@@ -25,5 +25,11 @@ class authentication {
     }
     next();
   }
+  async addView(req,res,next){
+   await Company.updateOne({slug:req.params.slug},{
+      $inc:{view:1}
+    }) 
+    next()    
+  }
 }
 module.exports = new authentication();

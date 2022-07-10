@@ -5,7 +5,38 @@ class SiteControllers {
 
   // [GET] /admin/:slug
   admin(req, res, next) {
-    res.render("admin")
+    var page = req.query.page;
+    if (!req.query.page) {
+      page = 1;
+    }
+    const size = 15;
+    const limit = size;
+    const skip = (page - 1) * size;
+
+    Promise.all([
+      Company.count({}),
+      Company.find({}).lean().skip(skip).limit(limit),
+    ])
+    .then(([total, company]) => {
+      var totalPage = Math.ceil(total / size);
+      var arrtotalPage = [];
+      for (var i = 1; i < totalPage + 1; i++) {
+        arrtotalPage.push(i);
+      }
+
+      company.forEach((e) => {
+        e.totalLike = e.like.length-1
+        if(e.totalLike <= 0) {
+          e.totalLike = 0
+        }
+      })
+
+      res.render("admin", {
+        company,
+        total,
+        arrtotalPage,
+      });
+    });
   }
 
   // [GET] /
@@ -356,6 +387,9 @@ class SiteControllers {
     .then((company)=>{
       res.render('updateCompany',{company})
     })
+  }
+  PostUpdateCompany(){
+    
   }
 }
 

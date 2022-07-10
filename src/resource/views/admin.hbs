@@ -20,10 +20,10 @@
                 <td>{{this.name}}</td>
                 <td>{{this.field}}</td>
                 <td>{{this.typeCompany}}</td>
-                <td style="text-align: center;">{{this.like}}</td>
+                {{!-- <td style="text-align: center;">{{this.like}}</td> --}}
                 <td>
-                    <a style="color: rgb(14, 120, 234);" href="/detail/{{this.slug}}" class="loginBtn">Sửa</a>
-                    <a style="color: rgb(14, 120, 234);" href="/detail/{{this.slug}}" class="loginBtn">Xóa</a>
+                    <form style="color: rgb(14, 120, 234);" action="/me/delete/{{this.slug}}?_method=delete" method="post"  class="loginBtn"><button type="submit">xoas</button></form>
+                    <form style="color: rgb(14, 120, 234);" action="/me/updateCompany/{{this.slug}}" method="get"   class="loginBtn"><button type="submit">update</button></form>
                 </td>
 
             </tr>
