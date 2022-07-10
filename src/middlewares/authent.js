@@ -10,9 +10,12 @@ class authentication {
     }
   }
 
+  
+
   async getUserAndAvt(req, res, next) {
     if (req.cookies.userId) {
-      await Account.findById({ _id: req.cookies.userId }).then((user) => {
+      await Account.findById({ _id: req.cookies.userId })
+      .then((user) => {
         if (user) {
           res.locals.avatar = user.avatar;
           res.locals.userName = user.userName;

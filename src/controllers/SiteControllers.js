@@ -2,6 +2,12 @@ const Company = require("../models/company");
 const Account = require("../models/account");
 const Comment = require("../models/comment");
 class SiteControllers {
+
+  // [GET] /admin/:slug
+  admin(req, res, next) {
+    res.render("admin")
+  }
+
   // [GET] /
   home(req, res, next) {
     Company.find({})
@@ -15,9 +21,10 @@ class SiteControllers {
             e.totalLike = 0
           }
         })
-
+        var admin = req.cookies.admin
         res.render("home", {
           company,
+          admin
         });
       })
       .catch(next);
@@ -66,8 +73,10 @@ class SiteControllers {
       .limit(10)
       .sort({ like: "desc" })
       .then((company) => {
+        var admin = req.cookies.admin
         res.render("rank", {
           company,
+          admin
         });
       });
   }
@@ -79,23 +88,41 @@ class SiteControllers {
 
   // [post] /login
   postLogin(req, res, next) {
-    Account.findOne({ email: req.body.email })
-      .lean()
-      .then((user) => {
-        if (!user) {
-          res.render("login", {
-            err: "Tài khoản này không tồn tại",
-            layout: false,
-          });
-          return;
+    var company = Company.find({}).lean().skip(0).limit(10);
+    var user = Account.findOne({ email: req.body.email }).lean();
+
+    Promise.all([user, company])
+    .then(async ([user, company]) => {
+      // console.log(user)
+      // console.log(company)
+
+      company.forEach((e) => {
+        e.totalLike = e.like.length - 1;
+        if (e.totalLike <= 0) {
+          e.totalLike = 0;
         }
-        if (user.password != req.body.password) {
-          res.render("login", { err: "Mật Khẩu Không Đúng", layout: false });
-          return;
-        }
-        res.cookie("userId ", user._id);
-        res.redirect("/");
       });
+
+      if (!user) {
+        res.render("login", {
+          err: "Tài khoản này không tồn tại",
+          layout: false,
+        });
+        return;
+      }
+
+      if (user.password != req.body.password) {
+        res.render("login", { err: "Mật Khẩu Không Đúng", layout: false });
+        return;
+      }
+
+      if (user.admin == true) {
+        res.cookie("admin ", user.admin);
+      }
+      res.cookie("userId ", user._id);
+      res.redirect(`/`)
+    })
+    .catch(next)
   }
 
   // [GET] /register
@@ -105,7 +132,8 @@ class SiteControllers {
 
   // [GET] /contact
   contact(req, res, next) {
-    res.render("contact");
+    var admin = req.cookies.admin
+    res.render("contact", {admin});
   }
 
   
@@ -180,6 +208,7 @@ class SiteControllers {
   logout(req, res, next) {
     res.clearCookie("userId");
     res.clearCookie("companyId");
+    res.clearCookie("admin");
     res.redirect("/");
   }
 
@@ -270,9 +299,11 @@ class SiteControllers {
         arrtotalPage.push(i);
       }
 
+      var admin = req.cookies.admin
       res.render("homeCompanies", {
         company,
         total,
+        admin,
         arrtotalPage,
       });
     });

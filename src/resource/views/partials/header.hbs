@@ -86,6 +86,10 @@
             </div>
          </li>
          <li><a href="/contact">liên hệ</a></li>
+         {{#if admin}}
+         <li><a style="color: red;" class="dropdown-item" href="/admin/{{slug}}">quản lý website</a></li>
+         {{/if}}
+
       </ul>
    </div>
 </div>

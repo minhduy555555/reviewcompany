@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const siteController = require("../controllers/SiteControllers")
 var upload = require("../middlewares/mdwupload")
+var middlewares = require('../middlewares/authent')
+
 
 
 // chú ý tuyến đường đi từ trên xuống
@@ -15,6 +17,7 @@ router.patch('/like/company/:id', siteController.likeCompany)
 router.patch('/unLike/company/:id', siteController.unLikeCompany)
 router.get('/company/search', siteController.search)
 router.get('/login', siteController.login)
+router.get('/admin/:slug', siteController.admin)
 router.post('/login', siteController.postLogin)
 router.get('/logout', siteController.logout)
 router.get('/register', siteController.register)

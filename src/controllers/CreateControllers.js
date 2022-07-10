@@ -5,7 +5,8 @@ const Account = require("../models/account");
 class CreateControllers {
   // [GET] /create/form/company
   createCompany(req, res, next) {
-    res.render("createCompany");
+    var admin = req.cookies.admin
+    res.render("createCompany", {admin});
   }
 
   // [POST] /create/post/company

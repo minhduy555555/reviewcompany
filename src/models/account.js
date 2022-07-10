@@ -8,6 +8,7 @@ const account = new Schema({
   password : { type: String },
   avatar:{ type: String, default: null },
   email:{type:String,unique: true},
+  admin:{type: Boolean, default: false},
   slug: { type: String, slug: "userName", unique: true }
 },{
   timestamps:true,
