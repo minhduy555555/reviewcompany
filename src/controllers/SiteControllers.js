@@ -104,9 +104,14 @@ class SiteControllers {
       .limit(10)
       .sort({ like: "desc" })
       .then((company) => {
+      var companyes = company.map(e=>{
+        e.likeCount =e.like.length -1
+        return e
+      })
+      
         var admin = req.cookies.admin
         res.render("rank", {
-          company,
+          companyes,
           admin
         });
       });
