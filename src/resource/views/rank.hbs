@@ -1,33 +1,33 @@
 <div class="rank">
-    <div>
-        <h3>Bảng xếp hạng</h3>
-    </div>
+        <h3 class="rank-tit">Bảng xếp hạng</h3>
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Top</th>
-                <th scope="col">Công ty</th>
-                <th scope="col">Lĩnh vực</th>
-                <th scope="col">Loại hình</th>
-                <th style="text-align: center;" scope="col">Lượt đánh giá</th>
-                <th scope="col"></th>
+                <th class="tittleTab" scope="col">Top</th>
+                <th class="tittleTab" scope="col">Công ty</th>
+                <th class="tittleTab" scope="col">Lĩnh vực</th>
+                <th class="tittleTab" scope="col">Loại hình</th>
+                <th class="tittleTab" style="text-align: center;" scope="col">Lượt đánh giá</th>
+                <th class="tittleTab" scope="col"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             {{#each companyes}}
-                <tr>
-                    <th scope="row">{{sum @index 1}}</th>
-                    <td>{{this.name}}</td>
-                    <td>{{this.field}}</td>
-                    <td>{{this.typeCompany}}</td>
-                    <td style="text-align: center;" >{{this.likeCount}}</td>
-                    <td>
-               <a 
-                    style="color: rgb(14, 120, 234);" 
-                    href="/detail/{{this.slug}}" class="loginBtn">xem chi tiết</a>
-
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td class="groupname-rank">
+                    <img class="logo-rank" src="/img-video/{{this.logo}}" alt="">
+                    <div class="heading-rank">
+                        <h3>{{this.name}}</h3>
+                    </div>
+                </td>
+                <td>{{this.field}}</td>
+                <td>{{this.typeCompany}}</td>
+                <td style="text-align: center;">{{this.likeCount}}</td>
+                <td>
+                    <a href="/detail/{{this.slug}}" class="viewDt">Xem chi tiết</a>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>

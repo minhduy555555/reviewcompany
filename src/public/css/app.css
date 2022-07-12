@@ -617,3 +617,37 @@ p {
 .container {
   min-height: 66vh;
 }
+.rank-tit{
+  font-size: 2.6rem;
+    color: #333333;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 20px;
+    display: block;
+    text-align: center;
+}
+
+.viewDt{
+  color: rgb(51, 228, 252);
+}
+.tittleTab{
+  color: rgb(51, 228, 252);
+  padding: 6px 0;
+}
+.groupname-rank{
+  display: flex;
+  align-items: center;
+}
+
+.logo-rank{
+  width: 36px;
+  height: 36+px;
+  border-radius: 100%;
+  object-fit: fill;
+  margin-right: 10px;
+}
+.heading-rank h3{
+  font-size: 1.3rem;
+  margin: 0;
+}
+
