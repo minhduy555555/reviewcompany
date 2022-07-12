@@ -12,7 +12,7 @@ var methodOverride = require('method-override')
 
 database.connect()
 const app = express()
-const port = 3000
+const port = 3001
 
 app.use(methodOverride('_method'))
 
@@ -32,6 +32,7 @@ app.engine('hbs', engine({
   extname: '.hbs',
   helpers: {
     sum: (a,b) => a+b, 
+    minus: (a,b) => a-b, 
   }
 }
 ));

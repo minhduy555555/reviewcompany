@@ -11,7 +11,6 @@ class CreateControllers {
 
   // [POST] /create/post/company
   postCompany(req, res, next) {
-    
 
     //nhận dữ liệu từ form mảng thông số của các file upload
     const files = req.files;

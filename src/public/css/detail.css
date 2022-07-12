@@ -111,9 +111,6 @@
 .company-card .company-detail {
     margin: 0 0 50px 75px
 }
-.text-muted {
-    color: #98a6ad!important;
-}
 
 p {
     line-height: 1.6;
@@ -128,32 +125,130 @@ p {
     margin: 3px 1px;
     border-radius: 3px;
 }
-/* .footer{
-    position: fixed;
-    bottom: 0;
-} */
 
+.likeBtn form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
 .group-info{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.likeBtn{
+.like-btn{
     font-size: 3rem;
-    color: rgb(0, 89, 255); 
-    padding: 10px 20px;   
+    border-radius: 100%;
+    background-color: rgb(155, 153, 153);
+    padding: 10px; 
+    margin: 0 20px;  
     cursor: pointer;
+    border: none;
+    outline: none;
+}
+.dislikeActive .like-btn{
+    color: rgba(255, 255, 255);
+}
+.likeActive .like-btn{
+    background-color: rgb(190, 187, 187);
+    color: rgb(43, 112, 249);
+}
+.dislikeActive .like-btn:hover{
+    color: rgb(43, 112, 249);
+}
+.likeActive .like-btn:hover{
+    color: rgba(255, 255, 255);
+}
+.viewLike{
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--second-color);
+    text-align: center;
+    padding: 10px 0;
 }
 
-.like{
-    display: none;
+
+.infocmn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.likeBtn.active .like{
-    display: block;
+.infocmn img{
+    zoom: 1.5;
+    margin: 0 20px;
+    border: 1px solid var(--second-color)
+}
+.media-body h5{
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.media-body h4{
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
-.likeBtn.active .dislike{
-    display: none;
+.tittle-dt{
+    padding: 10px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.carousel-item{
+    width: 100%;
+    height: 420px;
+    object-fit: contain;
+}
+
+.list-inline{
+    display: flex;
+}
+
+.comment-wr{
+    display: flex;
+    align-items: center;
+}
+
+.nameUser{
+    padding: 0 10px;
+    margin: 0;
+    font-size: 1.6rem;
+}
+.timeComment{
+    font-size: 1.2rem;
+    color: var(--second-color);
+}
+.media-body p{
+    font-size: 1.4rem;
+    color: black;
+}
+.comment-wraper{
+    padding: 4px 10px;
+    border-radius: 5px;
+    /* border: 1px solid rgba(0, 0, 0, .2); */
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
+    margin-bottom: 10px;
+}
+.cowr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btnComment{
+    min-width: 60px;
+    height: 40px;
+    margin-left: 4px;
+    border-radius: 5px;
+    float:right;
+    border: 1px solid var(--second-color);
+    color: var(--primary-color);
+    font-size: 1.6rem;
 }

@@ -6,37 +6,38 @@
             <div class="col-lg-8">
                 <div class="card-box task-detail">
                     <div class="group-info media mt-0 m-b-30">
-                        <div>
+                        <div class="infocmn">
                             <img class="d-flex mr-3 rounded-circle" alt="64x64" src="/img-video/{{company.logo}}"
                                 style="width: 48px; height: 48px;">
 
                             <div class="media-body">
                                 <h5 class="media-heading mb-0 mt-0">{{company.name}}</h5>
-                                <h5 class="media-heading mb-0 mt-0">{{company.slogan}}</h5>
+                                <h4 class="media-heading mb-0 mt-0">{{company.slogan}}</h5>
                             </div>
                         </div>
 
-                        <div class="likeBtn likeBtn">
+                        <div class="likeBtn">
 
                             {{#if isLike}}
-                            <form class=""  method="POST" action="/unLike/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
-                                <button style="color: rgb(0, 51, 255)" type="submit">
+                            <form class="likeActive" method="POST" action="/unLike/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                                <button class="like-btn" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
+                                <h4 class="viewLike">Bạn và {{minus totalLike 1}} người khác...</h3>
                             </form>
                             {{else}}
-                            <form class=""  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
-                                <button style="color: rgb(0, 51, 255)" type="submit">
+                            <form class="dislikeActive"  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                                <button class="like-btn" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
+                                <h4 class="viewLike">{{totalLike}} lượt thích...</h3>
                             </form>
                             {{/if}}
-                                <span>{{totalLike}}</span>
 
                         </div>
                     </div>
                     <div class="attached-files mt-4">
-                        <h5 class="">Ảnh nổi bật</h5>
+                        <h4 class="tittle-dt ">Ảnh nổi bật</h4>
                         <div id="carouselExampleControls" class="slider-img carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -61,28 +62,20 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        {{!-- <div class="row">
-                            <div class="col-sm-12">
-                                <div class="text-right mt-4">
-                                    <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
-                                    <button type="button" class="btn btn-light waves-effect">Cancel</button>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
-                    <h4 class="m-b-20">Tổng quan về công ty</h4>
+                    <h4 class="tittle-dt m-b-20">Tổng quan về công ty</h4>
                     <p class="text-muted">{{company.description}}</p>
                     <ul class="list-inline task-dates m-b-0 mt-5">
                         <li>
-                            <h5 class="m-b-5">Start Date</h5>
+                            <h5 class="tittle-dt m-b-5">Ngày thành lập</h5>
                             <p>{{company.founding}}</p>
                         </li>
                         <li>
-                            <h5 class="m-b-5">Lĩnh vực</h5>
+                            <h5 class="tittle-dt m-b-5">Lĩnh vực</h5>
                             <p>{{company.field}}</p>
                         </li>
                         <li>
-                            <h5 class="m-b-5">Loại hình</h5>
+                            <h5 class="tittle-dt m-b-5">Loại hình</h5>
                             <p>{{company.typeCompany}}</p>
                         </li>
                     </ul>
@@ -98,7 +91,7 @@
 
                     </div> --}}
                     <div class="assign-team mt-4">
-                        <h5 class="m-b-5">Nhà sáng lập</h5>
+                        <h5 class="tittle-dt m-b-5">Nhà sáng lập</h5>
                         <div>
                             <a href="#"><img class="rounded-circle thumb-sm" alt="64x64"
                                     src="https://bootdey.com/img/Content/avatar/avatar2.png"> </a>
@@ -120,14 +113,24 @@
                     <h4 class="header-title m-b-30">Comment ( {{countComment}} ) </h4>
                     <div>
                         <form method="POST" action="/create/comment" class="media m-b-20">
+                                <h4 class="header-title m-b-30">Viết bình luận: </h4>
                             <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                <div class="comment-wr d-flex mr-3">
+                                    {{#if myAvatar}}
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="/img-video/{{myAvatar}}">
+                                    </a>
+                                    {{else}}
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                                    </a>
+                                    {{/if}}
+                                    <h5 class="nameUser mt-0">{{this.userName}}</h5>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h3>Viết bình luận</h3>
-                                <input type="text" name="message" class="form-control input-sm"
-                                    placeholder="Some text value...">
+                            <div class="cowr media-body">
+                                <textarea type="text" name="message" class="form-control input-sm"
+                                    placeholder="Some text value..."> </textarea>
                                 <input type="text" value="{{idUser}}" name="idUser" hidden class="form-control input-sm"
                                     placeholder="Some text value...">
                                 <input type="text" value="{{company._id}}" name="idCompany" hidden
@@ -135,23 +138,29 @@
 
                                 <div class="mt-2 text-right">
                                     <button type="submit"
-                                        class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
+                                        class="btn btnComment  btn-sm btn-custom waves-effect waves-light">Send</button>
                                 </div>
                             </div>
                             </from>
                             {{#each fillterComment}}
-                            <div class="media m-b-20">
-                                <div class="d-flex mr-3">
+                            <div class="comment-wraper media m-b-20">
+                                <div class="comment-wr d-flex mr-3">
+                                    {{#if avatar}}
                                     <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                            src="{{this.avatar}}">
+                                            src="/img-video/{{avatar}}">
                                     </a>
-                                    <p>{{this.createdAt}}</p>
+                                    {{else}}
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                                    </a>
+                                    {{/if}}
+                                    <h5 class="nameUser mt-0">{{this.userName}}</h5>
+                                    <p class="timeComment">{{this.createdAt}}</p>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="mt-0">{{this.userName}}</h5>
                                     <p class="font-13 text-muted mb-0">
                                         {{this.message}}
-                                    </p><a href="" class="text-success font-13">Reply</a>
+                                    {{!-- </p><a href="" class="text-success font-13">Reply</a> --}}
                                 </div>
                             </div>
                             {{/each}}
