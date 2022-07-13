@@ -17,6 +17,7 @@ class authentication {
       await Account.findById({ _id: req.cookies.userId })
       .then((user) => {
         if (user) {
+          res.locals.userId = user._Id;
           res.locals.avatar = user.avatar;
           res.locals.userName = user.userName;
           res.locals.slug = user.slug;

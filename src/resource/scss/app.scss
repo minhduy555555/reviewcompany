@@ -239,9 +239,9 @@ p {
       color: $second-color;
     }
 
-    .selectBtn.active .selectItem {
-      display: flex;
-    }
+    // .selectBtn.active .selectItem {
+    //   display: flex;
+    // }
 
     .selectBtn:hover .selectItem {
       display: flex;
@@ -660,4 +660,14 @@ p {
 
 .container{
   min-height: 66vh;
+}
+
+.groupname-rank{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tittleTab{
+  color: aqua;
 }

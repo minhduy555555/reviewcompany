@@ -6,7 +6,8 @@ class CreateControllers {
   // [GET] /create/form/company
   createCompany(req, res, next) {
     var admin = req.cookies.admin
-    res.render("createCompany", {admin});
+    var createCpnActive = "active"
+    res.render("createCompany", {admin, createCpnActive});
   }
 
   // [POST] /create/post/company

@@ -19,14 +19,16 @@
                         <div class="likeBtn">
 
                             {{#if isLike}}
-                            <form class="likeActive" method="POST" action="/unLike/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                            <form class="likeActive" method="POST"
+                                action="/unLike/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
                                 <button class="like-btn" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
                                 <h4 class="viewLike">Bạn và {{minus totalLike 1}} người khác...</h3>
                             </form>
                             {{else}}
-                            <form class="dislikeActive"  method="POST" action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
+                            <form class="dislikeActive" method="POST"
+                                action="/like/company/{{company._id}}?idUser={{idUser}}&_method=PATCH">
                                 <button class="like-btn" type="submit">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
@@ -113,7 +115,8 @@
                     <h4 class="header-title m-b-30">Comment ( {{countComment}} ) </h4>
                     <div>
                         <form method="POST" action="/create/comment" class="media m-b-20">
-                                <h4 class="header-title m-b-30">Viết bình luận: </h4>
+                            <h4 class="header-title m-b-30">Viết bình luận: </h4>
+                            {{#if idUser}}
                             <div class="d-flex mr-3">
                                 <div class="comment-wr d-flex mr-3">
                                     {{#if myAvatar}}
@@ -141,6 +144,10 @@
                                         class="btn btnComment  btn-sm btn-custom waves-effect waves-light">Send</button>
                                 </div>
                             </div>
+                            {{else}}
+                            <a style="font-size: 1.5rem; color: blue; padding: 10px 0; display: block;"
+                                href="/login">Đăng nhập để bình luận</a>
+                            {{/if}}
                             </from>
                             {{#each fillterComment}}
                             <div class="comment-wraper media m-b-20">
@@ -160,7 +167,7 @@
                                 <div class="media-body">
                                     <p class="font-13 text-muted mb-0">
                                         {{this.message}}
-                                    {{!-- </p><a href="" class="text-success font-13">Reply</a> --}}
+                                        {{!-- </p><a href="" class="text-success font-13">Reply</a> --}}
                                 </div>
                             </div>
                             {{/each}}

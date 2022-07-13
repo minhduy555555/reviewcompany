@@ -1,0 +1,52 @@
+
+.card-box-cc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.media-body-cc{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.name-cc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.media-body-cc label{
+    width: 100%;
+    margin: 0 10px;
+    font-weight: 400;
+}
+
+.media-body-cc input{
+    width: 500px;
+    outline: none;
+    border: 1px solid rgb(183, 165, 31) !important;
+    padding: 10px;
+    margin: 5px;
+}
+
+.des-cc{
+    width: 500px;
+    min-height: 200px;
+}
+
+.list-tick{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-tick li select,
+.list-tick li input{
+    height: 40px;
+    width: 140px;
+    cursor: pointer;
+    margin: 0 10px;
+}

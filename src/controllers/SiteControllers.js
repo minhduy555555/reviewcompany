@@ -4,7 +4,7 @@ const Comment = require("../models/comment");
 class SiteControllers {
   // [GET] /admin/:slug
   admin(req, res, next) {
-    var page = req.query.page;
+    let page = req.query.page;
     if (!req.query.page) {
       page = 1;
     }
@@ -16,9 +16,9 @@ class SiteControllers {
       Company.count({}),
       Company.find({}).lean().skip(skip).limit(limit),
     ]).then(([total, company]) => {
-      var totalPage = Math.ceil(total / size);
-      var arrtotalPage = [];
-      for (var i = 1; i < totalPage + 1; i++) {
+      let totalPage = Math.ceil(total / size);
+      let arrtotalPage = [];
+      for (let i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
 
@@ -28,7 +28,7 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-
+      
       res.render("admin", {
         company,
         total,
@@ -50,9 +50,12 @@ class SiteControllers {
             e.totalLike = 0;
           }
         });
-        var admin = req.cookies.admin;
+        let admin = req.cookies.admin;
+        var homeActive = "active"
+
         res.render("home", {
           company,
+          homeActive,
           admin,
         });
       })
@@ -61,7 +64,7 @@ class SiteControllers {
 
   // [GET] /home/companies
   homeCompanies(req, res, next) {
-    var page = req.query.page;
+    let page = req.query.page;
     if (!req.query.page) {
       page = 1;
     }
@@ -73,9 +76,9 @@ class SiteControllers {
       Company.count({}),
       Company.find({}).lean().skip(skip).limit(limit),
     ]).then(([total, company]) => {
-      var totalPage = Math.ceil(total / size);
-      var arrtotalPage = [];
-      for (var i = 1; i < totalPage + 1; i++) {
+      let totalPage = Math.ceil(total / size);
+      let arrtotalPage = [];
+      for (let i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
 
@@ -99,16 +102,18 @@ class SiteControllers {
     Company.find({})
       .lean()
       .limit(10)
-      .sort({ like: "desc" })
+      .sort({ countLike: -1 })
       .then((company) => {
         var companyes = company.map((e) => {
           e.likeCount = e.like.length - 1;
           return e;
         });
 
+        var rankActive = "active"
         var admin = req.cookies.admin;
         res.render("rank", {
           companyes,
+          rankActive,
           admin,
         });
       });
@@ -121,8 +126,8 @@ class SiteControllers {
 
   // [post] /login
   postLogin(req, res, next) {
-    var company = Company.find({}).lean().skip(0).limit(10);
-    var user = Account.findOne({ email: req.body.email }).lean();
+    let company = Company.find({}).lean().skip(0).limit(10);
+    let user = Account.findOne({ email: req.body.email }).lean();
 
     Promise.all([user, company])
       .then(async ([user, company]) => {
@@ -150,6 +155,7 @@ class SiteControllers {
         }
 
         if (user.admin == true) {
+          res.cookie("userId ", user._id);
           res.cookie("admin ", user.admin);
         }
         res.cookie("userId ", user._id);
@@ -165,8 +171,9 @@ class SiteControllers {
 
   // [GET] /contact
   contact(req, res, next) {
-    var admin = req.cookies.admin;
-    res.render("contact", { admin });
+    var contactActive = "active"
+    let admin = req.cookies.admin;
+    res.render("contact", { admin, contactActive });
   }
 
   // [PUT] /profile/update/:slug
@@ -192,7 +199,7 @@ class SiteControllers {
 
   // [post] /register
   postRegister(req, res, next) {
-    var newAccount = new Account(req.body);
+    let newAccount = new Account(req.body);
     newAccount.save().then(() => {
       res.redirect("/login");
     });
@@ -200,11 +207,15 @@ class SiteControllers {
 
   // [post] /like/company/:slug
   likeCompany(req, res, next) {
-    Company.findOneAndUpdate(
+    Company.updateMany(
       { _id: req.params.id },
       {
         $addToSet: { like: req.query.idUser },
+      },
+      {
+        $inc: { countLike:  1},
       }
+
     ).then(() => {
       res.redirect("back");
     });
@@ -212,10 +223,13 @@ class SiteControllers {
   // [post] /unlike/company/:slug
 
   unLikeCompany(req, res, next) {
-    Company.findOneAndUpdate(
+    Company.updateMany(
       { _id: req.params.id },
       {
         $pull: { like: req.query.idUser },
+      },
+      {
+        $inc: { countLike: - 1},
       }
     ).then(() => {
       res.redirect("back");
@@ -227,13 +241,13 @@ class SiteControllers {
     const user = Account.findOne({ slug: req.params.slug });
     const company = Company.find({ author: req.cookies.userId });
     Promise.all([user, company]).then(async ([user, company]) => {
-      var avatar = user.avatar;
-      var userName = user.userName;
-      var slug = user.slug;
-      var countLike = company.reduce((tatol, company) => {
+      let avatar = user.avatar;
+      let userName = user.userName;
+      let slug = user.slug;
+      let countLike = company.reduce((tatol, company) => {
         return tatol + (company.like.length - 1);
       }, 0);
-      var countPost = company.length;
+      let countPost = company.length;
       res.render("profile", { avatar, userName, slug, countLike, countPost });
     });
   }
@@ -255,40 +269,40 @@ class SiteControllers {
         return company;
       })
       .then((company) => {
-        var idUser = req.cookies.userId;
-        var img1 = company.albums[0].filename;
-        var img2 = company.albums[1].filename;
-        var img3 = company.albums[2].filename;
-        var fillterComment = [];
-        var massage = Comment.find({ idCompany: company._id })
+        let idUser = req.cookies.userId;
+        let img1 = company.albums[0].filename;
+        let img2 = company.albums[1].filename;
+        let img3 = company.albums[2].filename;
+        let fillterComment = [];
+        let massage = Comment.find({ idCompany: company._id })
           .lean()
           .sort({ createdAt: -1 });
-        var countComment = Comment.find({ idCompany: company._id }).count({});
-        var user = Account.find({}).lean();
-        var me = Account.find({_id: idUser}).lean();
+        let countComment = Comment.find({ idCompany: company._id }).count({});
+        let user = Account.find({}).lean();
+        let me = Account.find({ _id: idUser }).lean();
         Promise.all([massage, user, countComment, me]).then(
           ([massage, user, countComment, me]) => {
             massage.map((massageCurrent) => {
               user.find((useCurrent) => {
                 if (massageCurrent.idUser == useCurrent._id) {
-                  var infoMass = Object.assign(massageCurrent, useCurrent);
+                  let infoMass = Object.assign(massageCurrent, useCurrent);
                   fillterComment.push(infoMass);
                 }
               });
             });
 
             fillterComment.forEach((e) => {
-              var time = `${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}`;
+              let time = `${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}`;
               e.createdAt = time;
             });
-            var myAvatar = me.avatar
-            var avatar = fillterComment.avatar
+            let myAvatar = me.avatar;
+            let avatar = fillterComment.avatar;
 
-            var totalLike = company.like.length - 1;
+            let totalLike = company.like.length - 1;
             if (totalLike <= 0) {
               totalLike = 0;
             }
-            var isLike;
+            let isLike;
             if (company.like.includes(req.cookies.userId)) {
               isLike = true;
             } else {
@@ -319,7 +333,7 @@ class SiteControllers {
 
   // [GET] /
   sortField(req, res, next) {
-    var page = req.query.page;
+    let page = req.query.page;
     if (!req.query.page) {
       page = 1;
     }
@@ -331,24 +345,26 @@ class SiteControllers {
       Company.count({ field: req.params.field }),
       Company.find({ field: req.params.field }).lean().skip(skip).limit(limit),
     ]).then(([total, company]) => {
-      var totalPage = Math.ceil(total / size);
-      var arrtotalPage = [];
-      for (var i = 1; i < totalPage + 1; i++) {
+      let totalPage = Math.ceil(total / size);
+      let arrtotalPage = [];
+      for (let i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
 
-      var admin = req.cookies.admin;
+      var sortFieldActive = "active"
+      let admin = req.cookies.admin;
       res.render("homeCompanies", {
         company,
         total,
         admin,
         arrtotalPage,
+        sortFieldActive
       });
     });
   }
 
   search(req, res, next) {
-    var page = req.query.page;
+    let page = req.query.page;
     if (!req.query.page) {
       page = 1;
     }
@@ -363,9 +379,9 @@ class SiteControllers {
         .skip(skip)
         .limit(limit),
     ]).then(([total, company]) => {
-      var totalPage = Math.ceil(total / size);
-      var arrtotalPage = [];
-      for (var i = 1; i < totalPage + 1; i++) {
+      let totalPage = Math.ceil(total / size);
+      let arrtotalPage = [];
+      for (let i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
       res.render("homeCompanies", {

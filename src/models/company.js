@@ -10,6 +10,7 @@ const company = new Schema({
   field: { type: String },
   address: { type: String },
   like: { type: Array, default: [""]},
+  countLike: { type: Number, default: 0 },
   view: { type: Number, default: 0 },
   albums: { type: Array },
   author: {type: String },

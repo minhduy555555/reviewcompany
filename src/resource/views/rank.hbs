@@ -7,7 +7,7 @@
                 <th class="tittleTab" scope="col">Công ty</th>
                 <th class="tittleTab" scope="col">Lĩnh vực</th>
                 <th class="tittleTab" scope="col">Loại hình</th>
-                <th class="tittleTab" style="text-align: center;" scope="col">Lượt đánh giá</th>
+                <th class="tittleTab" style="text-align: center;" scope="col">Lượt thích</th>
                 <th class="tittleTab" scope="col"></th>
             </tr>
         </thead>
@@ -16,16 +16,16 @@
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td class="groupname-rank">
-                    <img class="logo-rank" src="/img-video/{{this.logo}}" alt="">
+                    <img style="width: 30px; height: 30px; border-radius: 100%; margin-right:10px;" class="logo-rank" src="/img-video/{{this.logo}}" alt="">
                     <div class="heading-rank">
-                        <h3>{{this.name}}</h3>
+                        <h3 style="font-size: 1.5rem ;">{{this.name}}</h3>
                     </div>
                 </td>
                 <td>{{this.field}}</td>
                 <td>{{this.typeCompany}}</td>
-                <td style="text-align: center;">{{this.likeCount}}</td>
+                <td style="text-align: center;">{{this.countLike}}</td>
                 <td>
-                    <a href="/detail/{{this.slug}}" class="viewDt">Xem chi tiết</a>
+                    <a style="color: rgb(10, 237, 254) ;" href="/detail/{{this.slug}}" class="viewDt">Xem chi tiết</a>
                 </td>
             </tr>
             {{/each}}

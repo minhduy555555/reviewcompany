@@ -19,7 +19,7 @@
 
    <div class="search row">
       <div class="col-lg-4 logo">
-         <a class="logo-img" href="#">
+         <a class="logo-img" href="/">
             <img src="/img-video/logo.png" alt="logo">
          </a>
       </div>
@@ -46,9 +46,7 @@
                   {{#if avatar}}
                   <img class="avarta" src="/img-video/{{avatar}}" alt="avarta">
                   {{else}}
-                  <img class="avarta"
-                     src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                     alt="avarta">
+                  <img class="avarta" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="avarta">
                   {{/if}}
                   <h4 class="user-name">{{userName}}</h4>
                </a>
@@ -70,10 +68,38 @@
 
    <div class="header-nav">
       <ul>
-         <li><a class="active" href="/">Trang chủ</a></li>
-         <li><a href="/rank">xếp hạng</a></li>
-         <li><a href="/create/form/company">tạo bài viết</a></li>
-         <li><a href="">tuyển dụng</a></li>
+         {{#if homeActive}}
+         <li><a class="{{homeActive}}" href="/">Trang chủ</a></li>
+         {{else}}
+         <li><a class="" href="/">Trang chủ</a></li>
+         {{/if}}
+
+         {{#if rankActive}}
+         <li><a class="{{rankActive}}" href="/rank">Xếp hạng</a></li>
+         {{else}}
+         <li><a class="" href="/rank">Xếp hạng</a></li>
+         {{/if}}
+
+         {{#if createCpnActive}}
+         <li><a class="{{createCpnActive}}" href="/create/form/company">tạo bài viết</a></li>
+         {{else}}
+         <li><a class="" href="/create/form/company">tạo bài viết</a></li>
+         {{/if}}
+
+
+         {{#if sortFieldActive}}
+         <li class="selectList">
+            <div class="selectBtn {{sortFieldActive}}" style="cursor: pointer">
+               Lĩnh vực
+               <i style="margin: 0 4px" class="fa-solid fa-chevron-down"></i>
+               <ul class="selectItem">
+                  <li><a href="/company/sort/Nhà hàng">Nhà hàng</a></li>
+                  <li><a href="/company/sort/khách sạn">khách sạn</a></li>
+                  <li><a href="/company/sort/Công nghệ">công nghệ</a></li>
+               </ul>
+            </div>
+         </li>
+         {{else}}
          <li class="selectList">
             <div class="selectBtn" style="cursor: pointer">
                Lĩnh vực
@@ -85,7 +111,14 @@
                </ul>
             </div>
          </li>
-         <li><a href="/contact">liên hệ</a></li>
+         {{/if}}
+
+         {{#if contactActive}}
+         <li><a class="{{contactActive}}" href="/contact">liên hệ</a></li>
+         {{else}}
+         <li><a class="" href="/contact">liên hệ</a></li>
+         {{/if}}
+         
          {{#if admin}}
          <li><a style="color: red;" class="dropdown-item" href="/admin/{{slug}}">quản lý website</a></li>
          {{/if}}
