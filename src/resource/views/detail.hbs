@@ -16,6 +16,7 @@
                             </div>
                         </div>
 
+                        {{#if idUser}}
                         <div class="likeBtn">
 
                             {{#if isLike}}
@@ -37,6 +38,7 @@
                             {{/if}}
 
                         </div>
+                        {{/if}}
                     </div>
                     <div class="attached-files mt-4">
                         <h4 class="tittle-dt ">Ảnh nổi bật</h4>
@@ -112,16 +114,15 @@
             <!-- end col -->
             <div class="col-lg-4">
                 <div class="card-box">
-                    <h4 class="header-title m-b-30">Comment ( {{countComment}} ) </h4>
                     <div>
                         <form method="POST" action="/create/comment" class="media m-b-20">
                             <h4 class="header-title m-b-30">Viết bình luận: </h4>
                             {{#if idUser}}
                             <div class="d-flex mr-3">
                                 <div class="comment-wr d-flex mr-3">
-                                    {{#if myAvatar}}
+                                    {{#if avatar}}
                                     <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                            src="/img-video/{{myAvatar}}">
+                                            src="/img-video/{{avatar}}">
                                     </a>
                                     {{else}}
                                     <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
@@ -149,6 +150,8 @@
                                 href="/login">Đăng nhập để bình luận</a>
                             {{/if}}
                             </from>
+                            <h4 class="header-title m-b-30">Comment ( {{countComment}} ) </h4>
+
                             {{#each fillterComment}}
                             <div class="comment-wraper media m-b-20">
                                 <div class="comment-wr d-flex mr-3">

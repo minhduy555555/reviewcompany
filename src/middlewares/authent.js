@@ -10,12 +10,9 @@ class authentication {
     }
   }
 
-  
-
   async getUserAndAvt(req, res, next) {
     if (req.cookies.userId) {
-      await Account.findById({ _id: req.cookies.userId })
-      .then((user) => {
+      await Account.findById({ _id: req.cookies.userId }).then((user) => {
         if (user) {
           res.locals.userId = user._Id;
           res.locals.avatar = user.avatar;
@@ -26,11 +23,15 @@ class authentication {
     }
     next();
   }
-  async addView(req,res,next){
-   await Company.updateOne({slug:req.params.slug},{
-      $inc:{view:1}
-    }) 
-    next()    
+  async addView(req, res, next) {
+    await Company.updateOne(
+      { slug: req.params.slug },
+      {
+        $inc: { view: 1 },
+      }
+    );
+    next();
   }
+
 }
 module.exports = new authentication();

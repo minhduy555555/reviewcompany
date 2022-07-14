@@ -1,6 +1,7 @@
 const Company = require("../models/company");
 const Account = require("../models/account");
 const Comment = require("../models/comment");
+const account = require("../models/account");
 class SiteControllers {
   // [GET] /admin/:slug
   admin(req, res, next) {
@@ -28,7 +29,7 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-      
+
       res.render("admin", {
         company,
         total,
@@ -51,7 +52,7 @@ class SiteControllers {
           }
         });
         let admin = req.cookies.admin;
-        var homeActive = "active"
+        var homeActive = "active";
 
         res.render("home", {
           company,
@@ -102,14 +103,14 @@ class SiteControllers {
     Company.find({})
       .lean()
       .limit(10)
-      .sort({ countLike: -1 })
+      .sort({ view: -1 })
       .then((company) => {
         var companyes = company.map((e) => {
           e.likeCount = e.like.length - 1;
           return e;
         });
 
-        var rankActive = "active"
+        var rankActive = "active";
         var admin = req.cookies.admin;
         res.render("rank", {
           companyes,
@@ -171,7 +172,7 @@ class SiteControllers {
 
   // [GET] /contact
   contact(req, res, next) {
-    var contactActive = "active"
+    var contactActive = "active";
     let admin = req.cookies.admin;
     res.render("contact", { admin, contactActive });
   }
@@ -198,11 +199,17 @@ class SiteControllers {
   }
 
   // [post] /register
-  postRegister(req, res, next) {
+  async postRegister(req, res, next) {
     let newAccount = new Account(req.body);
     newAccount.save().then(() => {
       res.redirect("/login");
-    });
+    })
+    .catch(() => {
+      res.render("register", {
+        err: "Email này đã được sử dụng! Vui lòng nhập Email khác!!!",
+        layout: false,
+      })
+    })
   }
 
   // [post] /like/company/:slug
@@ -213,9 +220,8 @@ class SiteControllers {
         $addToSet: { like: req.query.idUser },
       },
       {
-        $inc: { countLike:  1},
+        $inc: { countLike: 1 },
       }
-
     ).then(() => {
       res.redirect("back");
     });
@@ -229,7 +235,7 @@ class SiteControllers {
         $pull: { like: req.query.idUser },
       },
       {
-        $inc: { countLike: - 1},
+        $inc: { countLike: -1 },
       }
     ).then(() => {
       res.redirect("back");
@@ -243,12 +249,22 @@ class SiteControllers {
     Promise.all([user, company]).then(async ([user, company]) => {
       let avatar = user.avatar;
       let userName = user.userName;
+      let password = user.password;
+      let email = user.email;
       let slug = user.slug;
       let countLike = company.reduce((tatol, company) => {
         return tatol + (company.like.length - 1);
       }, 0);
       let countPost = company.length;
-      res.render("profile", { avatar, userName, slug, countLike, countPost });
+      res.render("profile", {
+        email,
+        password,
+        avatar,
+        userName,
+        slug,
+        countLike,
+        countPost,
+      });
     });
   }
 
@@ -280,6 +296,7 @@ class SiteControllers {
         let countComment = Comment.find({ idCompany: company._id }).count({});
         let user = Account.find({}).lean();
         let me = Account.find({ _id: idUser }).lean();
+        console.log("me: ", me)
         Promise.all([massage, user, countComment, me]).then(
           ([massage, user, countComment, me]) => {
             massage.map((massageCurrent) => {
@@ -351,14 +368,14 @@ class SiteControllers {
         arrtotalPage.push(i);
       }
 
-      var sortFieldActive = "active"
+      var sortFieldActive = "active";
       let admin = req.cookies.admin;
       res.render("homeCompanies", {
         company,
         total,
         admin,
         arrtotalPage,
-        sortFieldActive
+        sortFieldActive,
       });
     });
   }
