@@ -119,11 +119,10 @@
          <li><a class="" href="/contact">liên hệ</a></li>
          {{/if}}
          
-         {{#if adminActive}}
+         {{#if admin}}
          <li><a  style="color: rgb(0, 238, 255);" class="{{adminActive}}" href="/admin/{{slug}}">quản lý website</a></li>
          {{else}}
-         <li><a  style="color: rgb(0, 238, 255);" class="" href="/admin/{{slug}}">quản lý website</a></li>
-
+         <input type="text" hidden>
          {{/if}}
 
       </ul>

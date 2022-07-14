@@ -205,15 +205,17 @@ class SiteControllers {
   // [post] /register
   async postRegister(req, res, next) {
     let newAccount = new Account(req.body);
-    newAccount.save().then(() => {
-      res.redirect("/login");
-    })
-    .catch(() => {
-      res.render("register", {
-        err: "Email này đã được sử dụng! Vui lòng nhập Email khác!!!",
-        layout: false,
+    newAccount
+      .save()
+      .then(() => {
+        res.redirect("/login");
       })
-    })
+      .catch(() => {
+        res.render("register", {
+          err: "Email này đã được sử dụng! Vui lòng nhập Email khác!!!",
+          layout: false,
+        });
+      });
   }
 
   // [post] /like/company/:slug
@@ -251,7 +253,6 @@ class SiteControllers {
     const user = Account.findOne({ slug: req.params.slug });
     const company = Company.find({ author: req.cookies.userId });
     Promise.all([user, company]).then(async ([user, company]) => {
-
       let avatar = user.avatar;
       let userName = user.userName;
       let password = user.password;
@@ -302,7 +303,7 @@ class SiteControllers {
           .sort({ createdAt: -1 });
         let countComment = Comment.find({ idCompany: company._id }).count({});
         let user = Account.find({}).lean();
-        let findMe = Account.find({ _id: idUser }).lean();
+        let findMe = Account.findOne({ _id: idUser }).lean();
         Promise.all([massage, user, countComment, findMe]).then(
           ([massage, user, countComment, me]) => {
             // console.log(me)
@@ -319,8 +320,15 @@ class SiteControllers {
               let time = `${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}`;
               e.createdAt = time;
             });
-            let avatar = me[0].avatar;
-            let userName = me[0].userName;
+            let avatar 
+            let userName 
+            if (me) {
+              avatar = me.avatar;
+              userName = me.userName;
+            } else {
+              avatar = null;
+              userName = null;
+            }
             let avatars = fillterComment.avatar;
 
             let totalLike = company.like.length - 1;
@@ -389,7 +397,7 @@ class SiteControllers {
     });
   }
 
-  // [GET] 
+  // [GET]
   search(req, res, next) {
     let page = req.query.page;
     if (!req.query.page) {
@@ -401,7 +409,10 @@ class SiteControllers {
 
     Promise.all([
       Company.count({ name: req.query.name.toUpperCase() }),
-      Company.find({ name: req.query.name.toUpperCase() }).lean().skip(skip).limit(limit),
+      Company.find({ name: req.query.name.toUpperCase() })
+        .lean()
+        .skip(skip)
+        .limit(limit),
     ]).then(([total, company]) => {
       let totalPage = Math.ceil(total / size);
       let arrtotalPage = [];
@@ -423,7 +434,7 @@ class SiteControllers {
       });
     });
   }
-  
+
   // [GET] me/stored/:slug
   stored(req, res, next) {
     let page = req.query.page;
@@ -436,7 +447,10 @@ class SiteControllers {
 
     Promise.all([
       Company.count({ author: req.cookies.userId }),
-      Company.find({ author: req.cookies.userId }).lean().skip(skip).limit(limit),
+      Company.find({ author: req.cookies.userId })
+        .lean()
+        .skip(skip)
+        .limit(limit),
     ]).then(([total, company]) => {
       let totalPage = Math.ceil(total / size);
       let arrtotalPage = [];
@@ -457,7 +471,6 @@ class SiteControllers {
         arrtotalPage,
       });
     });
-
   }
   deleteCompany(req, res, next) {
     Company.deleteOne({ slug: req.params.slug }).then(() => {
