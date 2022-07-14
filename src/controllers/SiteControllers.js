@@ -29,10 +29,13 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-
+      let admin = req.cookies.admin;
+      var adminActive = "active";
       res.render("admin", {
         company,
         total,
+        admin,
+        adminActive,
         arrtotalPage,
       });
     });
@@ -42,6 +45,7 @@ class SiteControllers {
   home(req, res, next) {
     Company.find({})
       .lean()
+      .sort({ view: -1 })
       .skip(0)
       .limit(10)
       .then((company) => {
@@ -247,6 +251,7 @@ class SiteControllers {
     const user = Account.findOne({ slug: req.params.slug });
     const company = Company.find({ author: req.cookies.userId });
     Promise.all([user, company]).then(async ([user, company]) => {
+
       let avatar = user.avatar;
       let userName = user.userName;
       let password = user.password;
@@ -256,12 +261,14 @@ class SiteControllers {
         return tatol + (company.like.length - 1);
       }, 0);
       let countPost = company.length;
+      let admin = req.cookies.admin;
       res.render("profile", {
         email,
         password,
         avatar,
         userName,
         slug,
+        admin,
         countLike,
         countPost,
       });
@@ -295,10 +302,10 @@ class SiteControllers {
           .sort({ createdAt: -1 });
         let countComment = Comment.find({ idCompany: company._id }).count({});
         let user = Account.find({}).lean();
-        let me = Account.find({ _id: idUser }).lean();
-        console.log("me: ", me)
-        Promise.all([massage, user, countComment, me]).then(
+        let findMe = Account.find({ _id: idUser }).lean();
+        Promise.all([massage, user, countComment, findMe]).then(
           ([massage, user, countComment, me]) => {
+            // console.log(me)
             massage.map((massageCurrent) => {
               user.find((useCurrent) => {
                 if (massageCurrent.idUser == useCurrent._id) {
@@ -312,8 +319,9 @@ class SiteControllers {
               let time = `${e.createdAt.getDay()}/${e.createdAt.getMonth()}/${e.createdAt.getFullYear()}`;
               e.createdAt = time;
             });
-            let myAvatar = me.avatar;
-            let avatar = fillterComment.avatar;
+            let avatar = me[0].avatar;
+            let userName = me[0].userName;
+            let avatars = fillterComment.avatar;
 
             let totalLike = company.like.length - 1;
             if (totalLike <= 0) {
@@ -334,8 +342,9 @@ class SiteControllers {
               img2,
               img3,
               me,
-              myAvatar,
               avatar,
+              userName,
+              avatars,
               fillterComment,
               countComment,
             });
@@ -380,6 +389,7 @@ class SiteControllers {
     });
   }
 
+  // [GET] 
   search(req, res, next) {
     let page = req.query.page;
     if (!req.query.page) {
@@ -391,16 +401,21 @@ class SiteControllers {
 
     Promise.all([
       Company.count({ name: req.query.name.toUpperCase() }),
-      Company.find({ name: req.query.name.toUpperCase() })
-        .lean()
-        .skip(skip)
-        .limit(limit),
+      Company.find({ name: req.query.name.toUpperCase() }).lean().skip(skip).limit(limit),
     ]).then(([total, company]) => {
       let totalPage = Math.ceil(total / size);
       let arrtotalPage = [];
       for (let i = 1; i < totalPage + 1; i++) {
         arrtotalPage.push(i);
       }
+
+      company.forEach((e) => {
+        e.totalLike = e.like.length - 1;
+        if (e.totalLike <= 0) {
+          e.totalLike = 0;
+        }
+      });
+
       res.render("homeCompanies", {
         company,
         total,
@@ -408,13 +423,41 @@ class SiteControllers {
       });
     });
   }
-
+  
+  // [GET] me/stored/:slug
   stored(req, res, next) {
-    Company.find({ author: req.params.slug })
-      .lean()
-      .then((company) => {
-        res.render("stored", { company });
+    let page = req.query.page;
+    if (!req.query.page) {
+      page = 1;
+    }
+    const size = 8;
+    const limit = size;
+    const skip = (page - 1) * size;
+
+    Promise.all([
+      Company.count({ author: req.cookies.userId }),
+      Company.find({ author: req.cookies.userId }).lean().skip(skip).limit(limit),
+    ]).then(([total, company]) => {
+      let totalPage = Math.ceil(total / size);
+      let arrtotalPage = [];
+      for (let i = 1; i < totalPage + 1; i++) {
+        arrtotalPage.push(i);
+      }
+
+      company.forEach((e) => {
+        e.totalLike = e.like.length - 1;
+        if (e.totalLike <= 0) {
+          e.totalLike = 0;
+        }
       });
+
+      res.render("stored", {
+        company,
+        total,
+        arrtotalPage,
+      });
+    });
+
   }
   deleteCompany(req, res, next) {
     Company.deleteOne({ slug: req.params.slug }).then(() => {

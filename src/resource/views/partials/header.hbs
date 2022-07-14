@@ -94,7 +94,7 @@
                <i style="margin: 0 4px" class="fa-solid fa-chevron-down"></i>
                <ul class="selectItem">
                   <li><a href="/company/sort/Nhà hàng">Nhà hàng</a></li>
-                  <li><a href="/company/sort/khách sạn">khách sạn</a></li>
+                  <li><a href="/company/sort/Khách sạn">khách sạn</a></li>
                   <li><a href="/company/sort/Công nghệ">công nghệ</a></li>
                </ul>
             </div>
@@ -119,8 +119,11 @@
          <li><a class="" href="/contact">liên hệ</a></li>
          {{/if}}
          
-         {{#if admin}}
-         <li><a style="color: red;" class="dropdown-item" href="/admin/{{slug}}">quản lý website</a></li>
+         {{#if adminActive}}
+         <li><a  style="color: rgb(0, 238, 255);" class="{{adminActive}}" href="/admin/{{slug}}">quản lý website</a></li>
+         {{else}}
+         <li><a  style="color: rgb(0, 238, 255);" class="" href="/admin/{{slug}}">quản lý website</a></li>
+
          {{/if}}
 
       </ul>

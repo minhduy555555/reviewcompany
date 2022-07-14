@@ -1,211 +1,211 @@
-
-<form method="POST" action="" enctype="multipart/form-data">
+<form method="POST" action="/create/post/company" enctype="multipart/form-data">
     <div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card-box task-detail">
-                    <div class="media mt-0 m-b-30">
-                        {{!-- <form action="/create/post/logo" enctype="multipart/form-data" method="POST"> --}}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box card-box-cc task-detail">
+                        <div class="name-cc media mt-0 m-b-30">
                             <img class="d-flex mr-3 rounded-circle" alt="64x64"
-                                src="{{company.logo}}"
-                                style="width: 48px; height: 48px;">
-                            {{!-- <input type="file" name="logo" class="add-logo" accept="image/*"> --}}
-                        {{!-- </form> --}}
-                        <div class="media-body">
-                            <label for="name">Tên công ty</label>
-                            <input type="text" name="name" value="{{company.name}}" class="add-name">
+                                src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr"
+                                style="width: 50px; height: 50px;">
+
+                            <div>
+                                <div class="media-body media-body-cc">
+                                    <label for="name">Tên công ty</label>
+                                    <input type="text" name="name" placeholder="Tên công ty" class="add-name">
+                                </div>
+                                <div class="media-body media-body-cc">
+                                    <label for="slogan">Slogan</label>
+                                    <input type="text" name="slogan" placeholder="Slogan" class="add-name">
+                                    <input style="display: none;" type="text" name="author" value="{{slug}}"
+                                        class="add-name">
+                                </div>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <label for="slogan">Slogan</label>
-                            <input type="text" name="slogan" value="{{company.slogan}}" class="add-name">
-                            <input style="display: none;" type="text" name="author" value="{{slug}}" class="add-name">
-                        </div>
-                    </div>
-                    {{!-- <form action="logo"> --}}
-                            <label for="">Chọn 3 ảnh nổi bật</label>
+
+                        <div class="media-body media-body-cc">
+                            <label for="">Chọn logo và ảnh nổi bật</label>
                             <input type="file" name="albums" multiple class="add-logo" accept="image/*">
-                            {{!-- <button type="submit">Gửi</button> --}}
-                    {{!-- </form> --}}
-                    <h4 class="m-b-20">Tổng quan về công ty</h4>
-                    {{!-- <textarea name="description" id="" aria-valuenow="{{company.description}"  cols="30" rows="10"></textarea> --}}
-                    <ul class="list-inline task-dates m-b-0 mt-5">
-                        <li>
-                            <h5 class="m-b-5">Ngày thành lập</h5>
-                            {{!-- <p>01 December 2017 <small class="text-muted">1:00 PM</small></p> --}}
-                            <input name="founding" value="{{company.founding}}" type="date">
-                        </li>
-                        <li>
-                            <h5 class="m-b-5">Lĩnh vực</h5>
+                        </div>
 
-                            <select name="field" class="form-select" aria-label="Default select example">
-                                <option value="">{{company.field}}</option>
-                                <option value="Công nghệ">Công nghệ</option>
-                                <option value="Nhà hàng">Nhà hàng</option>
-                                <option value="Khách sạn">Khách sạn</option>
-                            </select>
+                        <div  class="media-body media-body-cc">
+                            <label for="">Địa chỉ</label>
+                            <input name="address" type="text">
+                        </div>
 
-                        </li>
-                        <li>
-                            <h5 class="m-b-5">Loại hình</h5>
+                        <div style="display: flex;" class="media-body media-body-cc">
+                            <label for="">Bài viết về công ty:</label>
+                            <textarea class="des-cc" name="description"></textarea>
+                        </div>
 
-                            <select name="typeCompany" class="form-select" aria-label="Default select example">
-                                <option value="">{{company.typeCompany}}</option>
-                                <option value="TNHH">Trách nhiệm hữu hạn</option>
-                                <option value="cổ phần">Cổ phần</option>
-                                <option value="Tập đoàn">Tập đoàn</option>
-                            </select>
+                        <ul class="list-tick list-inline task-dates m-b-0 mt-5">
+                            <li>
+                                <h5 class="m-b-5">Ngày thành lập</h5>
+                                {{!-- <p>01 December 2017 <small class="text-muted">1:00 PM</small></p> --}}
+                                <input name="founding" type="date">
+                            </li>
+                            <li>
+                                <h5 class="m-b-5">Lĩnh vực</h5>
 
-                        </li>
-                        <li>
-                            <h5 class="m-b-5">Địa chỉ</h5>
-                            {{!-- <p>01 December 2017 <small class="text-muted">1:00 PM</small></p> --}}
-                            <input name="address" value="{{company.address}}" type="text">
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="task-tags mt-4">
-                        <h5 class="">Tags</h5>
-                        <div class="bootstrap-tagsinput"><span class="tag label label-info">Amsterdam<span
-                                    data-role="remove"></span></span> <span class="tag label label-info">Washington<span
-                                    data-role="remove"></span></span> <span class="tag label label-info">Sydney<span
-                                    data-role="remove"></span></span>
+                                <select name="field" class="form-select" aria-label="Default select example">
+                                    <option value="Công nghệ">Công nghệ</option>
+                                    <option value="Nhà hàng">Nhà hàng</option>
+                                    <option value="Khách sạn">Khách sạn</option>
+                                </select>
+
+                            </li>
+                            <li>
+                                <h5 class="m-b-5">Loại hình</h5>
+
+                                <select name="typeCompany" class="form-select" aria-label="Default select example">
+                                    <option value="TNHH">Trách nhiệm hữu hạn</option>
+                                    <option value="cổ phần">Cổ phần</option>
+                                    <option value="Tập đoàn">Tập đoàn</option>
+                                </select>
+
+                            </li>
+
+                        </ul>
+
+                        <div class="clearfix"></div>
+                        <div class="task-tags mt-4">
+                            <h5 class="">Tags</h5>
+                            <div class="bootstrap-tagsinput"><span class="tag label label-info">Amsterdam<span
+                                        data-role="remove"></span></span> <span
+                                    class="tag label label-info">Washington<span data-role="remove"></span></span> <span
+                                    class="tag label label-info">Sydney<span data-role="remove"></span></span>
+
+                            </div>
 
                         </div>
 
+                        <div class="attached-files mt-4">
+                            <h5 class="">Nhà sáng lập</h5>
+                            <div class="files-list">
+                                <div class="file-box">
+                                    <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                            class="img-responsive img-thumbnail" alt="attached-img"></a>
+                                    <p class="font-13 mb-1 text-muted"><small>File one</small></p>
+                                </div>
+                                <div class="file-box">
+                                    <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                            class="img-responsive img-thumbnail" alt="attached-img"></a>
+                                    <p class="font-13 mb-1 text-muted"><small>Attached-2</small></p>
+                                </div>
+                                <div class="file-box">
+                                    <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                            class="img-responsive img-thumbnail" alt="attached-img"></a>
+                                    <p class="font-13 mb-1 text-muted"><small>Dribbble shot</small></p>
+                                </div>
+                                <div class="file-box ml-3"><a href="#"><span class="add-new-plus"><i
+                                                class="fa fa-plus"></i></span></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="text-right mt-4">
+                                        <button type="submit"
+                                            class="btn btn-success waves-effect waves-light">Save</button>
+                                        <button type="button" class="btn btn-light waves-effect">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {{!-- <div class="assign-team mt-4">
-                        <h5 class="m-b-5">Assign to</h5>
+                </div>
+                <!-- end col -->
+                <div style="display: none ;" class="col-lg-4">
+                    <div class="card-box">
+                        <h4 class="header-title m-b-30">Comments (5)</h4>
                         <div>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64"
-                                    src="https://bootdey.com/img/Content/avatar/avatar2.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64"
-                                    src="https://bootdey.com/img/Content/avatar/avatar3.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64"
-                                    src="https://bootdey.com/img/Content/avatar/avatar5.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64"
-                                    src="https://bootdey.com/img/Content/avatar/avatar8.png"> </a><a href="#"><span
-                                    class="add-new-plus"><i class="fa fa-plus"></i></span></a>
-                        </div>
-                    </div> --}}
-                    <div class="attached-files mt-4">
-                        <h5 class="">Nhà sáng lập</h5>
-                        <div class="files-list">
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                        class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>File one</small></p>
+                            <div class="media m-b-20">
+                                <div class="d-flex mr-3">
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0">Maxine Kennedy</h5>
+                                    <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras
+                                        sit
+                                        amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                        sollicitudin
+                                        commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
+                                </div>
                             </div>
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                        class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>Attached-2</small></p>
+                            <div class="media m-b-20">
+                                <div class="d-flex mr-3">
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0">Doyle Bell</h5>
+                                    <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras
+                                        sit
+                                        amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                        sollicitudin
+                                        commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
+                                    <div class="media m-t-20 m-b-20">
+                                        <div class="d-flex mr-3">
+                                            <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Elena Vancamp</h5>
+                                            <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Doyle</a>
+                                                Cras
+                                                sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                                sollicitudin commodo. Cras purus odio.</p><a href=""
+                                                class="text-success font-13">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                        class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>Dribbble shot</small></p>
+                            <div class="media m-b-20">
+                                <div class="d-flex mr-3">
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0">Maxine Kennedy</h5>
+                                    <p class="font-13 text-muted mb-0">Cras sit amet nibh libero, in gravida nulla.
+                                        Nulla
+                                        vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href=""
+                                        class="text-success font-13">Reply</a>
+                                </div>
                             </div>
-                            <div class="file-box ml-3"><a href="#"><span class="add-new-plus"><i
-                                            class="fa fa-plus"></i></span></a></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="text-right mt-4">
-                                    <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
-                                    <button type="button" class="btn btn-light waves-effect">Cancel</button>
+                            <div class="media m-b-20">
+                                <div class="d-flex mr-3">
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar5.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0">Erick Loper</h5>
+                                    <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Maxine</a> Cras sit
+                                        amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                        sollicitudin
+                                        commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
+                                </div>
+                            </div>
+                            <div class="media m-b-20">
+                                <div class="d-flex mr-3">
+                                    <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
+                                            src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <input type="text" class="form-control input-sm" placeholder="Some text value...">
+                                    <div class="mt-2 text-right">
+                                        <button type="submit"
+                                            class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- end col -->
             </div>
-            <!-- end col -->
-            <div style="display: none ;" class="col-lg-4">
-                <div class="card-box">
-                    <h4 class="header-title m-b-30">Comments (5)</h4>
-                    <div>
-                        <div class="media m-b-20">
-                            <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-0">Maxine Kennedy</h5>
-                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras sit
-                                    amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                    commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
-                            </div>
-                        </div>
-                        <div class="media m-b-20">
-                            <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-0">Doyle Bell</h5>
-                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras sit
-                                    amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                    commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
-                                <div class="media m-t-20 m-b-20">
-                                    <div class="d-flex mr-3">
-                                        <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                                src="https://bootdey.com/img/Content/avatar/avatar3.png"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0">Elena Vancamp</h5>
-                                        <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Doyle</a> Cras
-                                            sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                            sollicitudin commodo. Cras purus odio.</p><a href=""
-                                            class="text-success font-13">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media m-b-20">
-                            <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-0">Maxine Kennedy</h5>
-                                <p class="font-13 text-muted mb-0">Cras sit amet nibh libero, in gravida nulla. Nulla
-                                    vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href=""
-                                    class="text-success font-13">Reply</a>
-                            </div>
-                        </div>
-                        <div class="media m-b-20">
-                            <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar5.png"></a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-0">Erick Loper</h5>
-                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Maxine</a> Cras sit
-                                    amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                                    commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a>
-                            </div>
-                        </div>
-                        <div class="media m-b-20">
-                            <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64"
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-                            </div>
-                            <div class="media-body">
-                                <input type="text" class="form-control input-sm" placeholder="Some text value...">
-                                <div class="mt-2 text-right">
-                                    <button type="submit"
-                                        class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end col -->
+            <!-- end row -->
         </div>
-        <!-- end row -->
+        <!-- container -->
     </div>
-    <!-- container -->
-</div>
-{{!-- </form> --}}
+    {{!--
+</form> --}}

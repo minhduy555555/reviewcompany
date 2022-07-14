@@ -1,6 +1,6 @@
 <div class="home-companies">
     <div class="title-wrap">
-        <h3 class="title">Tất cả công ty ({{total}})</h3>
+        <h3 class="title"> tất cả công ty ({{total}})</h3>
         <a class="view-more" href="/">Các Công Ty Nổi Bật</a>
     </div>
 
@@ -28,16 +28,18 @@
                         <span>{{this.comment}}</span>
                     </li>
                 </ul>
-            <form method="post" action="/me/delete/{{{this.slug}}}?_method=DELETE" >
-            <button type="submit">xoa</button>
-            </form>
-            <a href="/me/updateCompany/{{this.slug}}">change</a>
             </a>
+            <div class="btnMe">
+                <form class="btn-action" method="post" action="/me/delete/{{{this.slug}}}?_method=DELETE">
+                    <button type="submit">Xóa</button>
+                </form>
+                <a class="btn-action" href="/me/updateCompany/{{this.slug}}">Sửa</a>
+            </div>
         </div>
         {{else}}
         <h2>Bạn chưa đăng bài viết nào </h2>
         <a href="/create/form/company">Tạo bài viết ngay</a>
         {{/each}}
     </div>
-   
+
 </div>

@@ -29,6 +29,8 @@ class CreateControllers {
     var newCompanyData = new Company(req.body);
     newCompanyData.logo = files[0].filename
     newCompanyData.albums = files
+    newCompanyData.author = req.cookies.userId
+
     // console.log(newCompanyData)
     newCompanyData
       .save()
