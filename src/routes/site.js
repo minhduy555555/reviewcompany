@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const siteController = require("../controllers/SiteControllers")
+const siteController = require("../controllers/siteControllers")
 var upload = require("../middlewares/mdwupload")
 var middlewares = require('../middlewares/authent')
 
