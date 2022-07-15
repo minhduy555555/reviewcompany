@@ -93,10 +93,11 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-
+      let admin = req.cookies.admin
       res.render("homeCompanies", {
         company,
         total,
+        admin,
         arrtotalPage,
       });
     });
@@ -341,6 +342,7 @@ class SiteControllers {
             } else {
               isLike = false;
             }
+            let admin = req.cookies.admin;
             res.render("detail", {
               isLike,
               company,
@@ -350,6 +352,7 @@ class SiteControllers {
               img2,
               img3,
               me,
+              admin,
               avatar,
               userName,
               avatars,
@@ -426,10 +429,11 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-
+        let admin = req.cookies.admin;
       res.render("homeCompanies", {
         company,
         total,
+        admin,
         arrtotalPage,
       });
     });
@@ -464,10 +468,11 @@ class SiteControllers {
           e.totalLike = 0;
         }
       });
-
+      let admin = req.cookies.admin
       res.render("stored", {
         company,
         total,
+        admin,
         arrtotalPage,
       });
     });

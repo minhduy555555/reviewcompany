@@ -256,3 +256,10 @@ p {
 .minheight{
     min-height: 50vh;
 }
+
+.slg{
+    font-size: 1.4rem;
+    color: rgb(123, 121, 4);
+    font-weight: 500;
+    text-transform: capitalize;
+}
